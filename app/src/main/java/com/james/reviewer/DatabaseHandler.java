@@ -15,7 +15,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String DB_NAME = "db_Reviewer.db";
 
     public static final String TBL_USERS  = "tblUsers";
-    public static final String TBL_QUESTIONS = "tblQuesitons";
+    public static final String TBL_QUESTIONS = "tblQuestions";
     public static final String TBL_ANSWERS = "tblAnswers";
     public static final String TBL_EXAMS = "tblExams";
 
@@ -32,7 +32,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String QUESTION_CORRECTANS = "correct_ans";
 
     public static final String ANSWER_ID = "answer_id";
-    public static final String ANSWERD_ANSWERED = "answered";
+    public static final String ANSWER_ANSWERED = "answered";
 
     public static final String EXAMS_ID = "exam_id";
     public static final String EXAMS_STATUS = "status";
@@ -50,8 +50,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+    public void onCreate(SQLiteDatabase database) {
         database.execSQL("CREATE TABLE "+ TBL_USERS + "(" +
                         USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                         USER_NAME + " TEXT NOT NULL, " +
@@ -62,7 +61,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 QUESTION_ID + " INTEGER NOT NULL, " +
                 USER_PASS + " INTEGER NOT NULL," +
                 EXAMS_ID + "INTEGER NOT NULL," +
-                ANSWERD_ANSWERED + "TEXT )");
+                ANSWER_ANSWERED + "TEXT )");
 
         database.execSQL("CREATE TABLE "+ TBL_QUESTIONS + "(" +
                 QUESTION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -71,7 +70,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 QUESTION_CHOICE2 + " TEXT, " +
                 QUESTION_CHOICE3 + " TEXT, " +
                 QUESTION_CHOICE4 + " TEXT, " +
-                ANSWERD_ANSWERED + "TEXT )");
+                ANSWER_ANSWERED+ "TEXT )");
 
         database.execSQL("CREATE TABLE "+ TBL_EXAMS+ "(" +
                 EXAMS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -83,27 +82,35 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+
         database.execSQL("DELETE TABLE IF EXIST " + TBL_QUESTIONS);
         database.execSQL("DELETE TABLE IF EXIST " + TBL_USERS);
         database.execSQL("DELETE TABLE IF EXIST " + TBL_EXAMS);
         database.execSQL("DELETE TABLE IF EXIST " + TBL_ANSWERS);
-        onCreate(database);
+        onCreate(sqLiteDatabase);
     }
 
 
     public void AddUser(String user, String pass){
+        database.execSQL("INSERT INTO " + TBL_USERS + " (" +
+                        USER_NAME + "," + USER_PASS + ") VALUES " +
+                        "('" + user + "', '" + pass + "')" );
+
+        /*
         ContentValues cv = new ContentValues();
         cv.put(user, USER_NAME);
         cv.put(pass, USER_PASS);
         database.insert(TBL_USERS, null , cv);
-
+*/
     }
 
     public void DeleteUser(String id){
+
         database.execSQL("DELETE FROM " + TBL_USERS + "WHERE " + USER_ID + " = " + id );
     }
 
     public void UpdateUser(String id,String name, String pass){
+
         ContentValues cv = new ContentValues();
         cv.put(name, USER_NAME);
         cv.put(pass, USER_PASS);
@@ -150,8 +157,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return database.rawQuery("SELECT * FROM " + TBL_ANSWERS +
                                 "INNER JOIN " + TBL_QUESTIONS + " ON " +
                                 TBL_ANSWERS+ "." + QUESTION_ID + "=" + TBL_QUESTIONS + "." + QUESTION_ID +
-                                "WHERE " + TBL_ANSWERS + "." + ANSWER_ID + "=" + TBL_QUESTIONS + "." + ANSWERD_ANSWERED
+                                "WHERE " + TBL_ANSWERS + "." + ANSWER_ID + "=" + TBL_QUESTIONS + "." + ANSWER_ANSWERED
                 ,null);
     }
+
+    public Cursor GeUsers(String user, String pass){
+        return  database.rawQuery("SELECT * " +
+                " FROM " + TBL_USERS +
+                " WHERE " + USER_NAME + " = '" + user +  "' AND " +
+                            USER_PASS +" = '" + pass + "'" ,null);
+    }
+
+
+
 
 }
