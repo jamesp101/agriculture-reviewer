@@ -6,10 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class MainMenuActivity extends AppCompatActivity {
+public class MainMenuActivity extends AppCompatActivity  {
 
 
     ImageButton btnStartQuiz;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
