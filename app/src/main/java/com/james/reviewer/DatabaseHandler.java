@@ -160,7 +160,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                                 "WHERE " + TBL_ANSWERS + "." + ANSWER_ID + "=" + TBL_QUESTIONS + "." + ANSWER_ANSWERED ,null);
     }
 
-    public Cursor GetUsers(String user, String pass){
+    public Cursor Login(String user, String pass){
         return  database.rawQuery("SELECT * " +
                 " FROM " + TBL_USERS +
                 " WHERE " + USER_NAME + " = '" + user +  "' AND " +

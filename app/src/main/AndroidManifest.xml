@@ -16,7 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignInActivity"></activity>
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".MainMenuActivity" />
+        <activity android:name=".QuizActivity" />
+        <activity android:name=".QuizResultsActivity"></activity>
     </application>
 
 </manifest>

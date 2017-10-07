@@ -8,13 +8,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class SignInActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
     EditText editUser, editPass, editPassConfirm;
     TextView textError;
     Button btnConfirm, btnBack;
 
-    DatabaseHandler database = LoginActivity.database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +35,9 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(editPass.getText().toString().equals(editPassConfirm.getText().toString())){
-                    database.AddUser(editUser.getText().toString(), editPass.getText().toString());
+                    LoginActivity.database.AddUser(editUser.getText().toString(), editPass.getText().toString());
                     finish();
-                    Toast.makeText(SignInActivity.this, "User Created", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, "User Created", Toast.LENGTH_SHORT).show();
                 }else{
                     textError.setEnabled(true);
                     textError.setVisibility(View.VISIBLE);
