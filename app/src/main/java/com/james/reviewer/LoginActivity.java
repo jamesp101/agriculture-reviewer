@@ -1,13 +1,20 @@
 package com.james.reviewer;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class LoginActivity extends AppCompatActivity {
 
-    DatabaseHandler database;
+    public static DatabaseHandler database;
+
+    Button btnLogin;
+    Button btnCreateUser;
+
+    EditText editUser, editPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,25 +22,29 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+        btnLogin = (Button) findViewById(R.id.button_login);
+        btnCreateUser = (Button) findViewById(R.id.button_createUser);
+
+        editUser = (EditText) findViewById(R.id.edit_addusername);
+        editPass = (EditText) findViewById(R.id.edit_password);
 
 
-        try{
-            database = new DatabaseHandler(this);
 
-            database.AddUser("Hello" , "World");
+        btnCreateUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), SignInActivity.class));
+            }
+        });
 
-            System.out.println("<DEBUG> USER CREATED!");
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-            Cursor c =   database.GeUsers("Hello" , "World");
-            System.out.println(c.getColumnNames());
-            c.moveToFirst();
-            String s = c.getString(c.getColumnIndex(DatabaseHandler.USER_NAME));
+            }
+        });
 
-            System.out.println("<DEBUG> USER FOUND! " + s);
 
-        }catch (Exception e){
-            System.out.println("<DEBUG> "+e);
-        }
 
     }
 }

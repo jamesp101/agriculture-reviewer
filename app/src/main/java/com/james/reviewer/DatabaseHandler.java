@@ -157,11 +157,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return database.rawQuery("SELECT * FROM " + TBL_ANSWERS +
                                 "INNER JOIN " + TBL_QUESTIONS + " ON " +
                                 TBL_ANSWERS+ "." + QUESTION_ID + "=" + TBL_QUESTIONS + "." + QUESTION_ID +
-                                "WHERE " + TBL_ANSWERS + "." + ANSWER_ID + "=" + TBL_QUESTIONS + "." + ANSWER_ANSWERED
-                ,null);
+                                "WHERE " + TBL_ANSWERS + "." + ANSWER_ID + "=" + TBL_QUESTIONS + "." + ANSWER_ANSWERED ,null);
     }
 
-    public Cursor GeUsers(String user, String pass){
+    public Cursor GetUsers(String user, String pass){
         return  database.rawQuery("SELECT * " +
                 " FROM " + TBL_USERS +
                 " WHERE " + USER_NAME + " = '" + user +  "' AND " +
