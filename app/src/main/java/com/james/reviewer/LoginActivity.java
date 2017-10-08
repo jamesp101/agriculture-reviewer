@@ -12,6 +12,7 @@ import android.widget.Toast;
 public class LoginActivity extends AppCompatActivity {
 
     public static DatabaseHandler database;
+    public static int userID;
 
     Button btnLogin;
     Button btnCreateUser;
@@ -46,6 +47,10 @@ public class LoginActivity extends AppCompatActivity {
                 try{
                     Cursor cursor = database.Login(editUser.getText().toString(), editPass.getText().toString());
                     cursor.moveToFirst();
+
+                    userID = Integer.parseInt(cursor.getString(cursor.getColumnIndex(DatabaseHandler.USER_ID)));
+
+
                     if(cursor.getCount() != 0){
                         startActivity(new Intent(getApplicationContext(), MainMenuActivity.class));
                         finish();

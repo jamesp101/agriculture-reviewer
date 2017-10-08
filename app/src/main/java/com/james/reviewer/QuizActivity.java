@@ -11,6 +11,8 @@ import android.widget.TextView;
 import java.util.LinkedList;
 
 
+//TODO add to tblExam and tblUsers
+
 public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswersFragment.OnFragmentInteractionListener{
 
     FragmentManager fragmentManager;
@@ -34,12 +36,16 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
+
+
         fragmentManager = getSupportFragmentManager();
 
 
          c = database.GetRandomizedQuestion();
         c.moveToFirst();
         NextQuestion();
+
+        database.AddExam(1,10,LoginActivity.userID);
 
 
 
@@ -55,9 +61,7 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
 
         txtCount = (TextView) findViewById(R.id.text_count);
         btnNext = (Button) findViewById(R.id.button_nextqustion);
-
         btnPrev = (Button) findViewById(R.id.button_prevquestion);
-
         btnBack = (Button) findViewById(R.id.button_quizback);
 
 
@@ -77,12 +81,16 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
     public void NextQuestionOnClick(View v){
         NextQuestion();
         currentNo++;
+
         System.out.println(ans);
         QuestionsAndAnswersFragment trans = new QuestionsAndAnswersFragment();
         trans.SetQuestion(queston,choice1,choice2,choice3,choice4);
+
+    //TODO add to tblAnswers
+
         qnaFragmentList.add(trans);
         fragmentManager.beginTransaction().replace(R.id.forFragment, trans).commit();
-        
+
     }
 
     void NextQuestion(){
@@ -97,7 +105,6 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
             choice3 = c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_CHOICE3));
             choice4 = c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_CHOICE4));
             // correct = c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_CORRECTANS));
-            c.moveToNext();
         }
 
 

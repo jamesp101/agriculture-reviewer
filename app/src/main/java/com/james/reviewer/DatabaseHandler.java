@@ -117,40 +117,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         database.update(TBL_USERS,cv, TBL_QUESTIONS + "=" + id, null);
     }
 
-    // TODO to be added; table_exam to be added
-    public void NewExam(){
-
+    public void AddAnswers(int questionId , int examID, String answered){
+        database.execSQL("INSERT INTO " + TBL_ANSWERS + " (" +
+                            QUESTION_ID + ", " + EXAMS_ID + ", " + ANSWER_ANSWERED + ") VALUES " +
+                            "(" + questionId + ", " + examID + ", '" + answered + "')" );
     }
 
-    // TODO PROTOTYPE to be changed
-    public void AddAnswers(String ans){
-        ContentValues cv = new ContentValues();
-        cv.put(ans,TBL_ANSWERS);
 
-        //TODO to be removed/changed
-        cv.put(Integer.toString(1),QUESTION_ID);
-        cv.put(Integer.toString(2),QUESTION_ID);
-        cv.put(Integer.toString(3),QUESTION_ID);
-
-        cv.put(Integer.toString(1),EXAMS_ID);
-        database.insert(TBL_ANSWERS, null , cv);
-
-    }
 
     public void addQuestions(String question, String choice1, String choice2, String choice3,String choice4, String correctAns ){
-        database.execSQL("INSERT INTO " + TBL_QUESTIONS + " ("
+       database.execSQL("INSERT INTO " + TBL_QUESTIONS + " ("
                             + QUESTION_DESC + ", " + QUESTION_CHOICE1 + ", " + QUESTION_CHOICE2 + ", " + QUESTION_CHOICE3 + ", " + QUESTION_CHOICE4 + ", " + QUESTION_CORRECTANS +  ") VALUES " +
                             "('" + question + "', '" + choice1 + "' , '"+ choice2+ "' , '" + choice3 + "', '" + choice4 + "', '" + correctAns + "')");
-        /*
-        ContentValues cv = new ContentValues();
-        cv.put(question,QUESTION_DESC);
-        cv.put(choice1,QUESTION_CHOICE1);
-        cv.put(choice2,QUESTION_CHOICE2);
-        cv.put(choice3,QUESTION_CHOICE3);
-        cv.put(choice4,QUESTION_CHOICE4);
-        cv.put(correctAns,QUESTION_CORRECTANS);
-        database.insert(TBL_QUESTIONS, null , cv);
-        */
+
+
+
 
     }
     public Cursor GetAnswers(){
@@ -171,8 +152,25 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return  database.rawQuery("SELECT * FROM "+ TBL_QUESTIONS + " ORDER BY RANDOM()",null);
     }
 
-    public void AddExam(){
+    public void AddExam(int status , int noOfQuestions , int userId){
+        database.execSQL("INSERT INTO " + TBL_EXAMS + "("
+                        + "( " + EXAMS_STATUS +", " + EXAMS_QUESTNO + USER_ID +")"
+                        + " VALUES "
+                        + " (" + status + ", " + noOfQuestions + ", " + userId + ")",null);
+    }
 
+    public void UpdateExamsStatus(int id, int status){
+        database.execSQL("UPDATE "+ TBL_EXAMS +
+                            " SET " +
+                        EXAMS_STATUS + " = "+ status +
+                        " WHERE " + EXAMS_ID + " = " + id,null);
+    }
+
+    //// TODO: 10/8/17 prototype
+    public int getExamId(){
+
+
+        return 0;
     }
 
 
