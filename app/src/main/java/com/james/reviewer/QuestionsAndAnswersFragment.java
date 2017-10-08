@@ -19,11 +19,6 @@ public class QuestionsAndAnswersFragment extends Fragment{
 
     String question,choice1,choice2,choice3,choice4;
 
-    public String GetAns(){
-
-        return ans;
-
-    }
 
 
 
@@ -79,6 +74,8 @@ public class QuestionsAndAnswersFragment extends Fragment{
             public void onClick(View view) {
                 if (mListener != null) {
                     mListener.onFragmentInteraction("a");
+
+
                 }
             }
         });
@@ -87,6 +84,8 @@ public class QuestionsAndAnswersFragment extends Fragment{
             public void onClick(View view) {
                 if (mListener != null) {
                     mListener.onFragmentInteraction("b");
+
+
                 }
             }
         });
@@ -95,6 +94,7 @@ public class QuestionsAndAnswersFragment extends Fragment{
             public void onClick(View view) {
                 if (mListener != null) {
                     mListener.onFragmentInteraction("c");
+
                 }
             }
         });
@@ -103,6 +103,7 @@ public class QuestionsAndAnswersFragment extends Fragment{
             public void onClick(View view) {
                 if (mListener != null) {
                     mListener.onFragmentInteraction("d");
+
                 }
             }
         });
@@ -127,7 +128,10 @@ public class QuestionsAndAnswersFragment extends Fragment{
     @Override
     public void onDetach() {
         super.onDetach();
+        if (mListener != null) {
+            mListener.onFragmentInteraction("");
 
+        }
 
     }
 

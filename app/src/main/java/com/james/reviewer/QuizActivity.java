@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.LinkedList;
 
@@ -13,9 +14,10 @@ import java.util.LinkedList;
 public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswersFragment.OnFragmentInteractionListener{
 
     FragmentManager fragmentManager;
-    LinkedList<QuestionsAndAnswersFragment> qnaFragment = new LinkedList<>();
+    LinkedList<QuestionsAndAnswersFragment> qnaFragmentList = new LinkedList<>();
     LinkedList <String> id = new LinkedList<>();
     Button btnNext, btnBack,btnPrev;
+    TextView txtCount;
 
     Cursor c;
 
@@ -24,6 +26,8 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
     String ans;
 
     DatabaseHandler database = LoginActivity.database;
+
+    int currentNo = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,19 +47,21 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
         QuestionsAndAnswersFragment first = new QuestionsAndAnswersFragment();
         first.SetQuestion(queston,choice1,choice2,choice3,choice4);
 
-        qnaFragment.add(first);
+        qnaFragmentList.add(first);
 
-        fragmentManager.beginTransaction().replace(R.id.forFragment, qnaFragment.get(0)).commit();
+        fragmentManager.beginTransaction().replace(R.id.forFragment, qnaFragmentList.get(0)).commit();
 
 
 
+        txtCount = (TextView) findViewById(R.id.text_count);
         btnNext = (Button) findViewById(R.id.button_nextqustion);
 
-        btnNext = (Button) findViewById(R.id.button_prevquestion);
+        btnPrev = (Button) findViewById(R.id.button_prevquestion);
 
         btnBack = (Button) findViewById(R.id.button_quizback);
 
 
+        currentNo = 1;
         QuestionsAndAnswersFragment trans = new QuestionsAndAnswersFragment();
         trans.SetQuestion(queston,choice1,choice2,choice3,choice4);
         fragmentManager.beginTransaction().replace(R.id.forFragment, trans).commit();
@@ -70,10 +76,13 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
 
     public void NextQuestionOnClick(View v){
         NextQuestion();
-
+        currentNo++;
+        System.out.println(ans);
         QuestionsAndAnswersFragment trans = new QuestionsAndAnswersFragment();
         trans.SetQuestion(queston,choice1,choice2,choice3,choice4);
+        qnaFragmentList.add(trans);
         fragmentManager.beginTransaction().replace(R.id.forFragment, trans).commit();
+        
     }
 
     void NextQuestion(){
