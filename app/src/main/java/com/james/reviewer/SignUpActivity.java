@@ -25,7 +25,7 @@ public class SignUpActivity extends AppCompatActivity {
         editPassConfirm = (EditText) findViewById(R.id.edit_addpasswordconfirm);
 
         textError = (TextView) findViewById(R.id.text_error);
-        btnBack = (Button) findViewById(R.id.button_back);
+        btnBack = (Button) findViewById(R.id.button_signupback);
         btnConfirm = (Button) findViewById(R.id.button_confirm);
 
         textError.setVisibility(View.INVISIBLE);

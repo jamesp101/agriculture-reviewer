@@ -36,7 +36,11 @@ public class QuestionsAndAnswersFragment extends Fragment{
         // Required empty public constructor
     }
     public void SetQuestion(String question, String choice1, String choice2,String choice3, String choice4 ){
-
+        this.question = question;
+        this.choice1 = choice1;
+        this.choice2 = choice2;
+        this.choice3 = choice3;
+        this.choice4 = choice4;
     }
 
     @Override

@@ -60,7 +60,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
+        database.addQuestions("1?","x" ,"d" ,"z","s","a");
+        database.addQuestions("2?","xz" ,"d2" ,"z3","sa","c");
+        database.addQuestions("3?","x123" ,"d123" ,"z123","s213","d");
 
     }
 }

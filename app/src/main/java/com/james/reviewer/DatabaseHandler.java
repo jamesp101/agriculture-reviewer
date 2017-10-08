@@ -70,7 +70,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 QUESTION_CHOICE2 + " TEXT, " +
                 QUESTION_CHOICE3 + " TEXT, " +
                 QUESTION_CHOICE4 + " TEXT, " +
-                ANSWER_ANSWERED+ "TEXT )");
+                QUESTION_CORRECTANS + " TEXT )");
 
         database.execSQL("CREATE TABLE "+ TBL_EXAMS+ "(" +
                 EXAMS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -81,13 +81,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase database, int i, int i1) {
 
         database.execSQL("DELETE TABLE IF EXIST " + TBL_QUESTIONS);
         database.execSQL("DELETE TABLE IF EXIST " + TBL_USERS);
         database.execSQL("DELETE TABLE IF EXIST " + TBL_EXAMS);
         database.execSQL("DELETE TABLE IF EXIST " + TBL_ANSWERS);
-        onCreate(sqLiteDatabase);
+        onCreate(database);
     }
 
 
@@ -137,20 +137,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
-    //TODO questions to be changed/removed
-    public void addQuestions(String ans){
+    public void addQuestions(String question, String choice1, String choice2, String choice3,String choice4, String correctAns ){
+        database.execSQL("INSERT INTO " + TBL_QUESTIONS + " ("
+                            + QUESTION_DESC + ", " + QUESTION_CHOICE1 + ", " + QUESTION_CHOICE2 + ", " + QUESTION_CHOICE3 + ", " + QUESTION_CHOICE4 + ", " + QUESTION_CORRECTANS +  ") VALUES " +
+                            "('" + question + "', '" + choice1 + "' , '"+ choice2+ "' , '" + choice3 + "', '" + choice4 + "', '" + correctAns + "')");
+        /*
         ContentValues cv = new ContentValues();
-        cv.put(ans,TBL_ANSWERS);
-
-        //TODO to be removed/changed
-        cv.put(Integer.toString(1),QUESTION_ID);
-
-        cv.put("Choice1",QUESTION_CHOICE1);
-        cv.put("Choice2",QUESTION_CHOICE2);
-        cv.put("Choice3",QUESTION_CHOICE3);
-        cv.put("Choice4",QUESTION_CHOICE4);
-        cv.put("a",QUESTION_CORRECTANS);
+        cv.put(question,QUESTION_DESC);
+        cv.put(choice1,QUESTION_CHOICE1);
+        cv.put(choice2,QUESTION_CHOICE2);
+        cv.put(choice3,QUESTION_CHOICE3);
+        cv.put(choice4,QUESTION_CHOICE4);
+        cv.put(correctAns,QUESTION_CORRECTANS);
         database.insert(TBL_QUESTIONS, null , cv);
+        */
 
     }
     public Cursor GetAnswers(){
@@ -165,6 +165,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 " FROM " + TBL_USERS +
                 " WHERE " + USER_NAME + " = '" + user +  "' AND " +
                             USER_PASS +" = '" + pass + "'" ,null);
+    }
+
+    public Cursor GetRandomizedQuestion(){
+        return  database.rawQuery("SELECT * FROM "+ TBL_QUESTIONS + " ORDER BY RANDOM()",null);
+    }
+
+    public void AddExam(){
+
     }
 
 
