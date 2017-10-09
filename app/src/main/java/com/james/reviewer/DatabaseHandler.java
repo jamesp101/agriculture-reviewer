@@ -36,7 +36,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public static final String EXAMS_ID = "exam_id";
     public static final String EXAMS_STATUS = "status";
-    public static final String EXAMS_QUESTNO = "number_of_questions";
+    public static final String EXAMS_QUESTNO = "numberOfQuestions";
 
     public static final int DB_VER = 1;
 
@@ -60,7 +60,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 ANSWER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 QUESTION_ID + " INTEGER NOT NULL, " +
                 USER_PASS + " INTEGER NOT NULL," +
-                EXAMS_ID + "INTEGER NOT NULL," +
+                EXAMS_ID + " INTEGER NOT NULL," +
                 ANSWER_ANSWERED + "TEXT )");
 
         database.execSQL("CREATE TABLE "+ TBL_QUESTIONS + "(" +
@@ -74,21 +74,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         database.execSQL("CREATE TABLE "+ TBL_EXAMS+ "(" +
                 EXAMS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+
                 USER_ID + " INTEGER, " +
-                EXAMS_STATUS + " INTEGER, " +
-                EXAMS_QUESTNO + "INTEGER )");
+                EXAMS_QUESTNO + " INTEGER, "+
+                EXAMS_STATUS + " INTEGER)");
     }
 
 
     @Override
     public void onUpgrade(SQLiteDatabase database, int i, int i1) {
 
-        database.execSQL("DELETE TABLE IF EXIST " + TBL_QUESTIONS);
-        database.execSQL("DELETE TABLE IF EXIST " + TBL_USERS);
-        database.execSQL("DELETE TABLE IF EXIST " + TBL_EXAMS);
-        database.execSQL("DELETE TABLE IF EXIST " + TBL_ANSWERS);
+        database.execSQL("DROP TABLE IF EXIST " + TBL_QUESTIONS);
+        database.execSQL("DROP TABLE IF EXIST " + TBL_USERS);
+        database.execSQL("DROP TABLE IF EXIST " + TBL_EXAMS);
+        database.execSQL("DROP TABLE IF EXIST " + TBL_ANSWERS);
         onCreate(database);
     }
+
 
 
     public void AddUser(String user, String pass){
@@ -117,10 +119,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         database.update(TBL_USERS,cv, TBL_QUESTIONS + "=" + id, null);
     }
 
-    public void AddAnswers(int questionId , int examID, String answered){
-        database.execSQL("INSERT INTO " + TBL_ANSWERS + " (" +
-                            QUESTION_ID + ", " + EXAMS_ID + ", " + ANSWER_ANSWERED + ") VALUES " +
-                            "(" + questionId + ", " + examID + ", '" + answered + "')" );
+
+    public Cursor Login(String user, String pass){
+        return  database.rawQuery("SELECT * " +
+                " FROM " + TBL_USERS +
+                " WHERE " + USER_NAME + " = '" + user +  "' AND " +
+                USER_PASS +" = '" + pass + "'" ,null);
     }
 
 
@@ -130,9 +134,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                             + QUESTION_DESC + ", " + QUESTION_CHOICE1 + ", " + QUESTION_CHOICE2 + ", " + QUESTION_CHOICE3 + ", " + QUESTION_CHOICE4 + ", " + QUESTION_CORRECTANS +  ") VALUES " +
                             "('" + question + "', '" + choice1 + "' , '"+ choice2+ "' , '" + choice3 + "', '" + choice4 + "', '" + correctAns + "')");
 
+    }
 
-
-
+    public void AddAnswers(int questionId , int examID, String answered){
+        database.execSQL("INSERT INTO " + TBL_ANSWERS + " (" +
+                QUESTION_ID + ", " + EXAMS_ID + ", " + ANSWER_ANSWERED + ") VALUES " +
+                "(" + questionId + ", " + examID + ", '" + answered + "')" );
     }
     public Cursor GetAnswers(){
         return database.rawQuery("SELECT * FROM " + TBL_ANSWERS +
@@ -141,22 +148,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                                 "WHERE " + TBL_ANSWERS + "." + ANSWER_ID + "=" + TBL_QUESTIONS + "." + ANSWER_ANSWERED ,null);
     }
 
-    public Cursor Login(String user, String pass){
-        return  database.rawQuery("SELECT * " +
-                " FROM " + TBL_USERS +
-                " WHERE " + USER_NAME + " = '" + user +  "' AND " +
-                            USER_PASS +" = '" + pass + "'" ,null);
-    }
+
 
     public Cursor GetRandomizedQuestion(){
         return  database.rawQuery("SELECT * FROM "+ TBL_QUESTIONS + " ORDER BY RANDOM()",null);
     }
 
     public void AddExam(int status , int noOfQuestions , int userId){
-        database.execSQL("INSERT INTO " + TBL_EXAMS + "("
-                        + "( " + EXAMS_STATUS +", " + EXAMS_QUESTNO + USER_ID +")"
+        database.execSQL("INSERT INTO " + TBL_EXAMS
+                        + "( " + EXAMS_STATUS +", " + EXAMS_QUESTNO + ", "+ USER_ID +")"
                         + " VALUES "
-                        + " (" + status + ", " + noOfQuestions + ", " + userId + ")",null);
+                        + " (" + status + ", " + noOfQuestions + ", " + userId + ")");
     }
 
     public void UpdateExamsStatus(int id, int status){
@@ -167,12 +169,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     //// TODO: 10/8/17 prototype
-    public int getExamId(){
-
-
-        return 0;
+    public int getExamId(int userId){
+        Cursor cursor = database.rawQuery("SELECT * FROM " + TBL_EXAMS +
+                                " WHERE " + USER_ID + " = " +userId + " AND "+
+                                    EXAMS_STATUS + " = " + 1,null);
+        cursor.moveToFirst();
+        System.out.println("<DEBUG>"+cursor.getInt(0));
+        return cursor.getInt(0);
     }
-
+    public int getExamLastId(int userId){
+        Cursor cursor = database.rawQuery("SELECT * FROM " + TBL_EXAMS +
+                " WHERE (" + USER_ID + " = " +userId + " AND "+
+                EXAMS_STATUS + " = " + 1 + ")" + " ORDER BY " + EXAMS_ID + " DESC LIMIT 1",null);
+        cursor.moveToFirst();
+        System.out.println("<DEBUG>"+cursor.getInt(0));
+        return cursor.getInt(0);
+    }
 
 
 

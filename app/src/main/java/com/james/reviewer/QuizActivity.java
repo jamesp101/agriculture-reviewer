@@ -1,5 +1,6 @@
 package com.james.reviewer;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -16,8 +17,13 @@ import java.util.LinkedList;
 public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswersFragment.OnFragmentInteractionListener{
 
     FragmentManager fragmentManager;
+
     LinkedList<QuestionsAndAnswersFragment> qnaFragmentList = new LinkedList<>();
-    LinkedList <String> id = new LinkedList<>();
+    LinkedList <String> questionIdList = new LinkedList<>();
+    LinkedList <String> answerList = new LinkedList<>();
+
+
+
     Button btnNext, btnBack,btnPrev;
     TextView txtCount;
 
@@ -30,6 +36,8 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
     DatabaseHandler database = LoginActivity.database;
 
     int currentNo = 0;
+    int examID = 0;
+    int maxNo = 50;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +53,10 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
         c.moveToFirst();
         NextQuestion();
 
-        database.AddExam(1,10,LoginActivity.userID);
 
+
+        database.AddExam(1,50,LoginActivity.userID);
+        examID = database.getExamLastId(LoginActivity.userID);
 
 
 
@@ -79,26 +89,39 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
     }
 
     public void NextQuestionOnClick(View v){
+        Finish();
         NextQuestion();
         currentNo++;
 
-        System.out.println(ans);
         QuestionsAndAnswersFragment trans = new QuestionsAndAnswersFragment();
         trans.SetQuestion(queston,choice1,choice2,choice3,choice4);
 
-    //TODO add to tblAnswers
+        answerList.add(ans);
 
         qnaFragmentList.add(trans);
         fragmentManager.beginTransaction().replace(R.id.forFragment, trans).commit();
 
     }
 
+    void Finish(){
+        if(currentNo > 3){
+            startActivity(new Intent(getApplicationContext(), QuizResultsActivity.class));
+            finish();
+
+            for(int a = 0; a < questionIdList.size();a++){
+                database.AddAnswers(Integer.parseInt(questionIdList.get(a)), examID,answerList.get(a));
+            }
+
+
+        }
+    }
+
     void NextQuestion(){
         if(c.getPosition() == 0){
             c.moveToFirst();
         }
-        if(c.getPosition() < c.getCount()){
-            id.add(c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_ID)));
+        c.move(currentNo);
+            questionIdList.add(c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_ID)));
             queston = c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_DESC));
             choice1 = c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_CHOICE1));
             choice2 = c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_CHOICE2));
@@ -110,7 +133,7 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
 
 
 
-    }
+
 
 
     @Override
