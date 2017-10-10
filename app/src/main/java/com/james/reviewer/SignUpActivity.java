@@ -31,6 +31,11 @@ public class SignUpActivity extends AppCompatActivity {
         textError.setVisibility(View.INVISIBLE);
 
 
+
+
+
+
+
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

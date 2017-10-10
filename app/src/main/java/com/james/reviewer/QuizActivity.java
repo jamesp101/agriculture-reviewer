@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -55,7 +56,7 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
 
 
 
-        database.AddExam(1,50,LoginActivity.userID);
+        database.AddExam(1,maxNo,LoginActivity.userID);
         examID = database.getExamLastId(LoginActivity.userID);
 
 
@@ -75,7 +76,6 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
         btnBack = (Button) findViewById(R.id.button_quizback);
 
 
-        currentNo = 1;
         QuestionsAndAnswersFragment trans = new QuestionsAndAnswersFragment();
         trans.SetQuestion(queston,choice1,choice2,choice3,choice4);
         fragmentManager.beginTransaction().replace(R.id.forFragment, trans).commit();
@@ -89,10 +89,12 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
     }
 
     public void NextQuestionOnClick(View v){
+        currentNo++;
         Finish();
         NextQuestion();
-        currentNo++;
 
+
+        Log.w("log2",examID+"");
         QuestionsAndAnswersFragment trans = new QuestionsAndAnswersFragment();
         trans.SetQuestion(queston,choice1,choice2,choice3,choice4);
 
@@ -101,16 +103,24 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
         qnaFragmentList.add(trans);
         fragmentManager.beginTransaction().replace(R.id.forFragment, trans).commit();
 
+
     }
 
     void Finish(){
-        if(currentNo > 3){
+        if(currentNo > 1){
             startActivity(new Intent(getApplicationContext(), QuizResultsActivity.class));
             finish();
 
             for(int a = 0; a < questionIdList.size();a++){
                 database.AddAnswers(Integer.parseInt(questionIdList.get(a)), examID,answerList.get(a));
             }
+
+            Intent intent = new Intent (getApplicationContext(), QuizResultsActivity.class);
+          //  Log.w("log",examID+"");
+            intent.putExtra("examID", examID);
+            startActivity(intent);
+
+
 
 
         }
@@ -119,9 +129,8 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
     void NextQuestion(){
         if(c.getPosition() == 0){
             c.moveToFirst();
-        }
-        c.move(currentNo);
-            questionIdList.add(c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_ID)));
+            c.moveToPosition(currentNo);
+//            questionIdList.add(c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_ID)));
             queston = c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_DESC));
             choice1 = c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_CHOICE1));
             choice2 = c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_CHOICE2));
@@ -129,6 +138,19 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
             choice4 = c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_CHOICE4));
             // correct = c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_CORRECTANS));
         }
+        else{
+            Log.w("log",examID+"");
+            c.moveToNext( );
+//            questionIdList.add(c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_ID)));
+            queston = c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_DESC));
+            choice1 = c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_CHOICE1));
+            choice2 = c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_CHOICE2));
+            choice3 = c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_CHOICE3));
+            choice4 = c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_CHOICE4));
+            // correct = c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_CORRECTANS));
+        }
+
+    }
 
 
 

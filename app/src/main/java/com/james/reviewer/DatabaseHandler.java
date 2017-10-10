@@ -59,9 +59,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         database.execSQL("CREATE TABLE "+ TBL_ANSWERS + "(" +
                 ANSWER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 QUESTION_ID + " INTEGER NOT NULL, " +
-                USER_PASS + " INTEGER NOT NULL," +
                 EXAMS_ID + " INTEGER NOT NULL," +
-                ANSWER_ANSWERED + "TEXT )");
+                ANSWER_ANSWERED + " TEXT )");
 
         database.execSQL("CREATE TABLE "+ TBL_QUESTIONS + "(" +
                 QUESTION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -102,7 +101,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         cv.put(user, USER_NAME);
         cv.put(pass, USER_PASS);
-        database.insert(TBL_USERS, null , cv);
+        database.insert(TBL_USERS, null , cv);TBL_QUESTIONS
 */
     }
 
@@ -141,6 +140,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 QUESTION_ID + ", " + EXAMS_ID + ", " + ANSWER_ANSWERED + ") VALUES " +
                 "(" + questionId + ", " + examID + ", '" + answered + "')" );
     }
+
+
+
     public Cursor GetAnswers(){
         return database.rawQuery("SELECT * FROM " + TBL_ANSWERS +
                                 "INNER JOIN " + TBL_QUESTIONS + " ON " +
@@ -154,12 +156,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return  database.rawQuery("SELECT * FROM "+ TBL_QUESTIONS + " ORDER BY RANDOM()",null);
     }
 
+
+
+
     public void AddExam(int status , int noOfQuestions , int userId){
         database.execSQL("INSERT INTO " + TBL_EXAMS
                         + "( " + EXAMS_STATUS +", " + EXAMS_QUESTNO + ", "+ USER_ID +")"
                         + " VALUES "
                         + " (" + status + ", " + noOfQuestions + ", " + userId + ")");
     }
+
+
+
 
     public void UpdateExamsStatus(int id, int status){
         database.execSQL("UPDATE "+ TBL_EXAMS +
@@ -168,7 +176,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         " WHERE " + EXAMS_ID + " = " + id,null);
     }
 
-    //// TODO: 10/8/17 prototype
+
+
+
+
     public int getExamId(int userId){
         Cursor cursor = database.rawQuery("SELECT * FROM " + TBL_EXAMS +
                                 " WHERE " + USER_ID + " = " +userId + " AND "+
@@ -177,6 +188,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         System.out.println("<DEBUG>"+cursor.getInt(0));
         return cursor.getInt(0);
     }
+
+
+
+
+
     public int getExamLastId(int userId){
         Cursor cursor = database.rawQuery("SELECT * FROM " + TBL_EXAMS +
                 " WHERE (" + USER_ID + " = " +userId + " AND "+
@@ -184,6 +200,26 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cursor.moveToFirst();
         System.out.println("<DEBUG>"+cursor.getInt(0));
         return cursor.getInt(0);
+    }
+
+
+
+
+
+    public Cursor getAnsweredList(int examid){
+       /* return database.rawQuery("SELECT " +
+                                TBL_QUESTIONS + "." + QUESTION_DESC + ", " +
+                                TBL_QUESTIONS + "." + QUESTION_CORRECTANS + " , " +
+                                TBL_ANSWERS + "." + ANSWER_ANSWERED +
+                                " FROM " + TBL_ANSWERS +
+                                " INNER JOIN " +TBL_QUESTIONS +  " ON " +
+                                TBL_ANSWERS + "." + QUESTION_ID + " = " + TBL_QUESTIONS + "." + QUESTION_ID +
+                                " WHERE "+ EXAMS_ID + " = " + examid ,null);
+                                */
+       return database.rawQuery("SELECT * " +
+
+                " FROM " + TBL_ANSWERS ,null);
+
     }
 
 
