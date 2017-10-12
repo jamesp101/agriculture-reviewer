@@ -90,47 +90,45 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
 
     public void NextQuestionOnClick(View v){
         currentNo++;
-        Finish();
-        NextQuestion();
+       // Finish();
+        if(currentNo < 10){
+
+            NextQuestion();
 
 
-        Log.w("log2",examID+"");
-        QuestionsAndAnswersFragment trans = new QuestionsAndAnswersFragment();
-        trans.SetQuestion(queston,choice1,choice2,choice3,choice4);
+            QuestionsAndAnswersFragment trans = new QuestionsAndAnswersFragment();
+            trans.SetQuestion(queston,choice1,choice2,choice3,choice4);
 
-        answerList.add(ans);
+            answerList.add(ans);
 
-        qnaFragmentList.add(trans);
-        fragmentManager.beginTransaction().replace(R.id.forFragment, trans).commit();
+            qnaFragmentList.add(trans);
+            fragmentManager.beginTransaction().replace(R.id.forFragment, trans).commit();
+        }else {
+            for(int a = 0; a < answerList.size();a++){
+                database.AddAnswers(Integer.parseInt(questionIdList.get(a)), examID,answerList.get(a));
+                Log.w("log", questionIdList.get(a) + " " + examID + " " +answerList.get(a));
+            }
+
+            Intent intent = new Intent (getApplicationContext(), QuizResultsActivity.class);
+
+            intent.putExtra("examID", examID);
+            startActivity(intent);
+            finish();
+        }
+
 
 
     }
 
     void Finish(){
-        if(currentNo > 1){
-            startActivity(new Intent(getApplicationContext(), QuizResultsActivity.class));
-            finish();
 
-            for(int a = 0; a < questionIdList.size();a++){
-                database.AddAnswers(Integer.parseInt(questionIdList.get(a)), examID,answerList.get(a));
-            }
-
-            Intent intent = new Intent (getApplicationContext(), QuizResultsActivity.class);
-          //  Log.w("log",examID+"");
-            intent.putExtra("examID", examID);
-            startActivity(intent);
-
-
-
-
-        }
     }
 
     void NextQuestion(){
         if(c.getPosition() == 0){
             c.moveToFirst();
             c.moveToPosition(currentNo);
-//            questionIdList.add(c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_ID)));
+          questionIdList.add(c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_ID)));
             queston = c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_DESC));
             choice1 = c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_CHOICE1));
             choice2 = c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_CHOICE2));
@@ -139,9 +137,9 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
             // correct = c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_CORRECTANS));
         }
         else{
-            Log.w("log",examID+"");
+
             c.moveToNext( );
-//            questionIdList.add(c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_ID)));
+           questionIdList.add(c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_ID)));
             queston = c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_DESC));
             choice1 = c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_CHOICE1));
             choice2 = c.getString(c.getColumnIndex(DatabaseHandler.QUESTION_CHOICE2));

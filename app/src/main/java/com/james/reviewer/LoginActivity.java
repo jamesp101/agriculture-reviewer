@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
@@ -18,6 +19,9 @@ public class LoginActivity extends AppCompatActivity {
     Button btnCreateUser;
 
     EditText editUser, editPass;
+
+    //TODO to be removed
+    ListView viewlist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +68,15 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
+        //Todo to be removed
+        viewlist = (ListView) findViewById(R.id.list_sample);
+        String [] list1 = {"JHello","World"};
+        String [] list2 = {"z1","asd"};
+        String [] list3 = {"x21","2321s"};
+        ItemAnsweredAdapter it = new ItemAnsweredAdapter(getApplicationContext(),list1, list2,list3);
+    viewlist.setAdapter(it);
+
 
         database.addQuestions("1?","x" ,"d" ,"z","s","a");
         database.addQuestions("2?","xz" ,"d2" ,"z3","sa","c");

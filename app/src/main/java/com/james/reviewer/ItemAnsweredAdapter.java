@@ -1,5 +1,4 @@
 package com.james.reviewer;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,38 +7,34 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 /**
- * Created by james on 10/10/17.
+ * Created by james on 10/12/17.
  */
 
 public class ItemAnsweredAdapter extends BaseAdapter {
 
-    private String[] question;
-    private String[] correctAns;
-    private String[] userAns;
-
-    int item;
-
     Context context;
 
-    private static LayoutInflater inflater = null;
 
-    public ItemAnsweredAdapter(Context context, String[] question, String[] userAns,String[] correctAns){
-        this.question = question;
-        this.correctAns = correctAns;
-        this.userAns = userAns;
-        this.context = context;
-        inflater = LayoutInflater.from(context);
+    String [] x;
+    String [] y;
+    String [] z;
+
+    public ItemAnsweredAdapter(Context c, String[] x, String[] y , String[] z){
+        this.context = c;
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
+
 
     @Override
     public int getCount() {
-        return 0;
+        return x.length;
     }
 
     @Override
     public Object getItem(int i) {
-        item = i;
-        return i;
+        return null;
     }
 
     @Override
@@ -57,15 +52,16 @@ public class ItemAnsweredAdapter extends BaseAdapter {
             v = vi.inflate(R.layout.answered_item_list, null);
         }
 
+
+
         TextView txtquestion =(TextView) v.findViewById(R.id.txt_list_item_question);
-        txtquestion.setText(question[i]);
+        txtquestion.setText(x[i]);
 
         TextView txtanswer =(TextView) v.findViewById(R.id.txt_list_item_usertAns);
-        txtanswer.setText(userAns[i]);
+        txtanswer.setText(y[i]);
 
         TextView txtcorrectAns =(TextView) v.findViewById(R.id.txt_list_item_correctAns);
-        txtcorrectAns.setText(correctAns[i]);
-
+        txtcorrectAns.setText(z[i]);
         return v;
     }
 }
