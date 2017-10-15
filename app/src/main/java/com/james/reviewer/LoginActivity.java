@@ -69,15 +69,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        //Todo to be removed
-        viewlist = (ListView) findViewById(R.id.list_sample);
-        String [] list1 = {"JHello","World"};
-        String [] list2 = {"z1","asd"};
-        String [] list3 = {"x21","2321s"};
-        ItemAnsweredAdapter it = new ItemAnsweredAdapter(getApplicationContext(),list1, list2,list3);
-    viewlist.setAdapter(it);
-
-
         database.addQuestions("1?","x" ,"d" ,"z","s","a");
         database.addQuestions("2?","xz" ,"d2" ,"z3","sa","c");
         database.addQuestions("3?","x123" ,"d123" ,"z123","s213","d");

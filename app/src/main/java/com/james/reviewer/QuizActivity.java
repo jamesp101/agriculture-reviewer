@@ -70,17 +70,16 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
 
 
 
-        txtCount = (TextView) findViewById(R.id.text_count);
+        txtCount = (TextView) findViewById(R.id.txt_countCurrentNo);
         btnNext = (Button) findViewById(R.id.button_nextqustion);
         btnPrev = (Button) findViewById(R.id.button_prevquestion);
         btnBack = (Button) findViewById(R.id.button_quizback);
 
 
         QuestionsAndAnswersFragment trans = new QuestionsAndAnswersFragment();
+
         trans.SetQuestion(queston,choice1,choice2,choice3,choice4);
         fragmentManager.beginTransaction().replace(R.id.forFragment, trans).commit();
-
-
     }
 
 
@@ -90,7 +89,9 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
 
     public void NextQuestionOnClick(View v){
         currentNo++;
+        txtCount.setText(Integer.toString(currentNo));;
        // Finish();
+
         if(currentNo < 10){
 
             NextQuestion();
@@ -102,6 +103,8 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
             answerList.add(ans);
 
             qnaFragmentList.add(trans);
+
+
             fragmentManager.beginTransaction().replace(R.id.forFragment, trans).commit();
         }else {
             for(int a = 0; a < answerList.size();a++){
@@ -115,6 +118,8 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
             startActivity(intent);
             finish();
         }
+
+
 
 
 

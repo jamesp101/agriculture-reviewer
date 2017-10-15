@@ -19,7 +19,9 @@
         <activity android:name=".SignUpActivity" />
         <activity android:name=".MainMenuActivity" />
         <activity android:name=".QuizActivity" />
-        <activity android:name=".QuizResultsActivity"></activity>
+        <activity android:name=".QuizResultsActivity" />
+        <activity android:name=".RecordsActivity\" />
+        <activity android:name=".SchedulesActivity"></activity>
     </application>
 
 </manifest>

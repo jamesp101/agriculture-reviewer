@@ -3,6 +3,7 @@ package com.james.reviewer;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -50,7 +51,7 @@ public class QuizResultsActivity extends AppCompatActivity {
          while(cursor.moveToNext()){
              questionList.add(cursor.getString(0));
              answeredList.add(cursor.getString(1));
-             correctList.add(cursor.getString(2));
+             correctList.add(cursor.getString(0));
          }
 
          String[] questionArray = new String[questionList.size()];
@@ -64,7 +65,11 @@ public class QuizResultsActivity extends AppCompatActivity {
          */
             questionArray = questionList.toArray(questionArray);
           answeredArray = answeredList.toArray(answeredArray);
-            correctArray = answeredList.toArray(correctArray);
+            correctArray = correctList.toArray(correctArray);
+
+         for(int a = 0 ; a < questionArray.length; a++){
+             Log.w ("array " , questionArray[a] + " - " +answeredArray[a] + " - " + correctArray[a]);
+         }
 
 
          ItemAnsweredAdapter adapter = new ItemAnsweredAdapter(this,questionArray,answeredArray,correctArray);

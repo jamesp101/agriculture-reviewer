@@ -207,19 +207,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
     public Cursor getAnsweredList(int examid){
-       /* return database.rawQuery("SELECT " +
+        return database.rawQuery("SELECT " +
                                 TBL_QUESTIONS + "." + QUESTION_DESC + ", " +
-                                TBL_QUESTIONS + "." + QUESTION_CORRECTANS + " , " +
+                                TBL_QUESTIONS + "." + QUESTION_CORRECTANS + "  , " +
                                 TBL_ANSWERS + "." + ANSWER_ANSWERED +
                                 " FROM " + TBL_ANSWERS +
-                                " INNER JOIN " +TBL_QUESTIONS +  " ON " +
+                                " LEFT JOIN " +TBL_QUESTIONS +  " ON " +
                                 TBL_ANSWERS + "." + QUESTION_ID + " = " + TBL_QUESTIONS + "." + QUESTION_ID +
                                 " WHERE "+ EXAMS_ID + " = " + examid ,null);
-                                */
+
+
+
+      /*
        return database.rawQuery("SELECT * " +
 
-                " FROM " + TBL_ANSWERS ,null);
 
+                " FROM " + TBL_ANSWERS ,null);
+*/
     }
 
 
