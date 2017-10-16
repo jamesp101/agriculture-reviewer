@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.james.reviewer.QuizResultsActivity">
+    tools:context="com.james.reviewer.Activities.QuizResultsActivity">
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="332dp"
-        android:layout_height="106dp"
+        android:layout_width="318dp"
+        android:layout_height="66dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -16,10 +16,11 @@
         app:layout_constraintVertical_bias="0.039">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/txt_results"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Text23View"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.058"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -31,22 +32,24 @@
 
     <Button
         android:id="@+id/button_z"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="53dp"
         android:text="Button"
-        tools:layout_editor_absoluteX="219dp"
-        tools:layout_editor_absoluteY="44dp" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/list_answered" />
 
     <ListView
         android:id="@+id/list_answered"
-        android:layout_width="329dp"
-        android:layout_height="290dp"
+        android:layout_width="313dp"
+        android:layout_height="343dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.746" />
+        app:layout_constraintVertical_bias="0.553" />
 
 </android.support.constraint.ConstraintLayout>

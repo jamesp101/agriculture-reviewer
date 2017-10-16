@@ -1,4 +1,4 @@
-package com.james.reviewer;
+package com.james.reviewer.Activities;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.james.reviewer.DatabaseHandler;
+import com.james.reviewer.R;
 
 public class LoginActivity extends AppCompatActivity {
 

@@ -37,6 +37,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String EXAMS_ID = "exam_id";
     public static final String EXAMS_STATUS = "status";
     public static final String EXAMS_QUESTNO = "numberOfQuestions";
+    public static final String EXAMS_DATE = "date";
 
     public static final int DB_VER = 1;
 
@@ -76,7 +77,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
                 USER_ID + " INTEGER, " +
                 EXAMS_QUESTNO + " INTEGER, "+
-                EXAMS_STATUS + " INTEGER)");
+                EXAMS_STATUS + " INTEGER," +
+                EXAMS_DATE + " TEXT )");
     }
 
 
@@ -126,6 +128,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 USER_PASS +" = '" + pass + "'" ,null);
     }
 
+    public Cursor GetUser(int userID){
+        return database.rawQuery("SELECT * FROM " + TBL_USERS +
+                                " WHERE "+ USER_ID + " = " + userID,null);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public void addQuestions(String question, String choice1, String choice2, String choice3,String choice4, String correctAns ){
@@ -152,6 +170,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
 
+
+
+
+
+
+
+
+
     public Cursor GetRandomizedQuestion(){
         return  database.rawQuery("SELECT * FROM "+ TBL_QUESTIONS + " ORDER BY RANDOM()",null);
     }
@@ -159,11 +185,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
 
-    public void AddExam(int status , int noOfQuestions , int userId){
+    public void AddExam(int status , int noOfQuestions , int userId, String date){
         database.execSQL("INSERT INTO " + TBL_EXAMS
-                        + "( " + EXAMS_STATUS +", " + EXAMS_QUESTNO + ", "+ USER_ID +")"
+                        + "( " + EXAMS_STATUS +", " + EXAMS_QUESTNO + ", "+ USER_ID + ", " +EXAMS_DATE + ")"
                         + " VALUES "
-                        + " (" + status + ", " + noOfQuestions + ", " + userId + ")");
+                        + " (" + status + ", " + noOfQuestions + ", " + userId + " , '" + date +"')");
     }
 
 
@@ -225,6 +251,28 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 " FROM " + TBL_ANSWERS ,null);
 */
     }
+
+
+    public Cursor GetUserRecords(int userID){
+        return database.rawQuery("SELECT  * " +
+                " FROM " + TBL_EXAMS , null);
+                //" --WHERE " + USER_ID + " = " + userID
+    }
+
+    public int GetTotalCorrectAns(int examid){
+        Cursor c = database.rawQuery("SELECT COUNT("+ ANSWER_ID +") AS TOTAL" +
+
+                " FROM " + TBL_ANSWERS + " WHERE " +
+                EXAMS_ID + " = "  + examid, null);
+
+
+        c.moveToFirst();
+        int x = Integer.parseInt(c.getString(0));
+
+        return x;
+    }
+
+
 
 
 

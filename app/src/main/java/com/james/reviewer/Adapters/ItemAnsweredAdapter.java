@@ -1,10 +1,12 @@
-package com.james.reviewer;
+package com.james.reviewer.Adapters;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.james.reviewer.R;
 
 /**
  * Created by james on 10/12/17.

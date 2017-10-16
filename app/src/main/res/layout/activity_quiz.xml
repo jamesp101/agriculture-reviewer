@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.james.reviewer.QuizActivity">
+    tools:context="com.james.reviewer.Activities.QuizActivity">
 
     <Button
         android:id="@+id/button_quizback"
@@ -23,13 +23,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.524"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.06" />
+        app:layout_constraintVertical_bias="0.13" />
 
     <Button
         android:id="@+id/button_nextqustion"
@@ -44,28 +44,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.965" />
 
-    <Button
-        android:id="@+id/button_prevquestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="PrevQuestionOnClick"
-        android:text="PREV"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.094"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
-
     <android.support.constraint.ConstraintLayout
         android:id="@+id/forFragment"
-        android:layout_width="329dp"
-        android:layout_height="370dp"
+        android:layout_width="321dp"
+        android:layout_height="341dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.581">
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintVertical_bias="0.558">
 
     </android.support.constraint.ConstraintLayout>
 
@@ -83,12 +71,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="count/count"
+        android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/forFragment"
-        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_quizback"
-        app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.938"
+        app:layout_constraintHorizontal_bias="0.061" />
 
 </android.support.constraint.ConstraintLayout>

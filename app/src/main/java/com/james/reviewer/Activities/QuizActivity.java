@@ -1,4 +1,4 @@
-package com.james.reviewer;
+package com.james.reviewer.Activities;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,12 +10,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.james.reviewer.DatabaseHandler;
+import com.james.reviewer.Fragment.QuestionsAndAnswersFragment;
+import com.james.reviewer.R;
+
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 
 
 //TODO add to tblExam and tblUsers
 
-public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswersFragment.OnFragmentInteractionListener{
+public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswersFragment.OnFragmentInteractionListener {
 
     FragmentManager fragmentManager;
 
@@ -28,13 +34,14 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
     Button btnNext, btnBack,btnPrev;
     TextView txtCount;
 
-    Cursor c;
-
     String queston,choice1,choice2,choice3,choice4;
-
     String ans;
 
     DatabaseHandler database = LoginActivity.database;
+
+
+
+    Cursor c;
 
     int currentNo = 0;
     int examID = 0;
@@ -45,18 +52,15 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-
-
         fragmentManager = getSupportFragmentManager();
-
 
          c = database.GetRandomizedQuestion();
         c.moveToFirst();
         NextQuestion();
 
 
-
-        database.AddExam(1,maxNo,LoginActivity.userID);
+        String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+        database.AddExam(1,maxNo,LoginActivity.userID, currentDateTimeString);
         examID = database.getExamLastId(LoginActivity.userID);
 
 
@@ -72,7 +76,7 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
 
         txtCount = (TextView) findViewById(R.id.txt_countCurrentNo);
         btnNext = (Button) findViewById(R.id.button_nextqustion);
-        btnPrev = (Button) findViewById(R.id.button_prevquestion);
+        //btnPrev = (Button) findViewById(R.id.button_prevquestion);
         btnBack = (Button) findViewById(R.id.button_quizback);
 
 
@@ -107,6 +111,7 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
 
             fragmentManager.beginTransaction().replace(R.id.forFragment, trans).commit();
         }else {
+
             for(int a = 0; a < answerList.size();a++){
                 database.AddAnswers(Integer.parseInt(questionIdList.get(a)), examID,answerList.get(a));
                 Log.w("log", questionIdList.get(a) + " " + examID + " " +answerList.get(a));

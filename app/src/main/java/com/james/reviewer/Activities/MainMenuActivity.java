@@ -1,4 +1,4 @@
-package com.james.reviewer;
+package com.james.reviewer.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+
+import com.james.reviewer.R;
 
 public class MainMenuActivity extends AppCompatActivity  {
 
@@ -37,12 +39,6 @@ public class MainMenuActivity extends AppCompatActivity  {
             }
         });
 
-        btnStartQuiz.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
 
         btnStartQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,5 +47,15 @@ public class MainMenuActivity extends AppCompatActivity  {
 
             }
         });
+
+        btnRecords.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplication(), RecordsActivity.class));
+            }
+        });
     }
+
+
+
 }

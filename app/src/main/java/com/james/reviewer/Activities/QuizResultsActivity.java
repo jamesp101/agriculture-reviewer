@@ -1,4 +1,4 @@
-package com.james.reviewer;
+package com.james.reviewer.Activities;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -6,6 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ListView;
+
+import com.james.reviewer.DatabaseHandler;
+import com.james.reviewer.Adapters.ItemAnsweredAdapter;
+import com.james.reviewer.R;
 
 import java.util.LinkedList;
 
@@ -31,9 +35,13 @@ public class QuizResultsActivity extends AppCompatActivity {
 
 
 
+
+       // Cursor c = database.GetUser(LoginActivity.userID);
+     //   String s = c.getString(0);
+
+
+
         examId = getIntent().getExtras().getInt("examID");
-
-
         SetList();
 
      }
@@ -51,7 +59,7 @@ public class QuizResultsActivity extends AppCompatActivity {
          while(cursor.moveToNext()){
              questionList.add(cursor.getString(0));
              answeredList.add(cursor.getString(1));
-             correctList.add(cursor.getString(0));
+             correctList.add(cursor.getString(2));
          }
 
          String[] questionArray = new String[questionList.size()];
