@@ -7,7 +7,7 @@
     tools:context="com.james.reviewer.Activities.AdminPanelActivity">
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/btnManageSchedules"
         android:layout_width="119dp"
         android:layout_height="107dp"
         android:scaleType="fitXY"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/btnViewUsers"
         android:layout_width="119dp"
         android:layout_height="107dp"
         android:scaleType="fitXY"
@@ -33,13 +33,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="View Users"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton4"
+        app:layout_constraintBottom_toTopOf="@+id/btnManageSchedules"
+        app:layout_constraintTop_toBottomOf="@+id/btnViewUsers"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/btnManageQuestions"
         android:layout_width="119dp"
         android:layout_height="107dp"
         android:scaleType="fitXY"
@@ -57,8 +57,8 @@
         android:text="Manage Questions"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton4"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton3" />
+        app:layout_constraintBottom_toTopOf="@+id/btnViewUsers"
+        app:layout_constraintTop_toBottomOf="@+id/btnManageQuestions" />
 
     <TextView
         android:id="@+id/textView10"
@@ -68,5 +68,5 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+        app:layout_constraintTop_toBottomOf="@+id/btnManageSchedules" />
 </android.support.constraint.ConstraintLayout>

@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,8 +17,8 @@ import android.widget.ImageButton;
 
 import com.james.reviewer.R;
 
-public class MainMenuActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
-
+public class Main2Activity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     ImageButton btnStartQuiz;
     Button btnRecords;
@@ -26,15 +27,28 @@ public class MainMenuActivity extends AppCompatActivity  implements NavigationVi
 
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_menu);
+        setContentView(R.layout.activity_main2);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        btnStartQuiz = (ImageButton) findViewById(R.id.btn_startquiz);
-        btnRecords = (Button) findViewById(R.id.btn_viewRec);
-        btnSchedules = (Button) findViewById(R.id.btn_viewSched);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+
+
+        btnStartQuiz = (ImageButton) findViewById(R.id.btnStartReview);
+        btnRecords = (Button) findViewById(R.id.btnViewHistory);
+        btnSchedules = (Button) findViewById(R.id.btnViewSchedules);
 
 
 
@@ -68,22 +82,6 @@ public class MainMenuActivity extends AppCompatActivity  implements NavigationVi
 
 
 
-
-
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
     }
 
     @Override
@@ -110,11 +108,6 @@ public class MainMenuActivity extends AppCompatActivity  implements NavigationVi
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -123,11 +116,19 @@ public class MainMenuActivity extends AppCompatActivity  implements NavigationVi
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Log.w("xxxxxxxxxxxxxx" , Integer.toString(item.getItemId()));
+        //noinspection SimplifiableIfStatement
+        if(id == R.id.action_settings) {
+            Log.w("ljhsdfg" ,"asdased");
+            return true;
+        } if(id == R.id.nav_admin){
+            startActivity(new Intent(getApplicationContext(), AdminPanelActivity.class));
+            Log.w("1414141341234123" ,"asdased");
+            finish();
 
-        if (id == R.id.nav_logout) {
-
-        }else if(id == R.id.nav_admin){
-
+        } if(id == R.id.nav_logout){
+            Log.w("ljhsdfg" ,"a893457809q34798q3y");
+            finish();
         }
 
 
@@ -135,7 +136,4 @@ public class MainMenuActivity extends AppCompatActivity  implements NavigationVi
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
-
 }

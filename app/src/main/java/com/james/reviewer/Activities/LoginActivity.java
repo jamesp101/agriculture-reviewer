@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                     if(cursor.getCount() != 0){
-                        startActivity(new Intent(getApplicationContext(), MainMenuActivity.class));
+                        startActivity(new Intent(getApplicationContext(), Main2Activity.class));
                         finish();
                     }else{
                         Toast.makeText(LoginActivity.this, "Error Username or Password", Toast.LENGTH_SHORT).show();

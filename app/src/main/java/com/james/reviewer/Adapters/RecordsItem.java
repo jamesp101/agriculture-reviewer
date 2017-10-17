@@ -55,7 +55,7 @@ public class RecordsItem extends BaseAdapter {
         if (v == null) {
             LayoutInflater vi;
             vi = LayoutInflater.from(context);
-            v = vi.inflate(R.layout.record_item, null);
+            v = vi.inflate(R.layout.item_records, null);
         }
 
 

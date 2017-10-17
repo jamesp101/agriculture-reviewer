@@ -50,7 +50,7 @@ public class ScheduleItemAdapter extends BaseAdapter {
         if (v == null) {
             LayoutInflater vi;
             vi = LayoutInflater.from(context);
-            v = vi.inflate(R.layout.answered_item_list, null);
+            v = vi.inflate(R.layout.item_answered, null);
         }
 
 

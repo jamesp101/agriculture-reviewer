@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.james.reviewer.Activities.MainMenuActivity">
-
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.james.reviewer.Activities.Main2Activity"
+    tools:showIn="@layout/app_bar_main2">
 
     <ImageButton
-        android:id="@+id/btn_startquiz"
+        android:id="@+id/btnStartReview"
         android:layout_width="120dp"
         android:layout_height="128dp"
         android:background="@android:color/transparent"
@@ -21,45 +22,37 @@
         app:srcCompat="@drawable/play" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Start Review"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_startquiz"
-        app:layout_constraintVertical_bias="0.077" />
+        app:layout_constraintVertical_bias="0.077"
+        android:layout_marginBottom="238dp" />
 
     <Button
-        android:id="@+id/btn_viewRec"
+        android:id="@+id/btnViewHistory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Records"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintVertical_bias="0.784" />
 
     <Button
-        android:id="@+id/btn_viewSched"
+        android:id="@+id/btnViewSchedules"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Schedules"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintVertical_bias="0.965" />
-
-    <include layout="@layout/content_main2"
-        android:layout_height="0dp"
-        android:layout_width="0dp"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="0dp" />
-
-
 </android.support.constraint.ConstraintLayout>

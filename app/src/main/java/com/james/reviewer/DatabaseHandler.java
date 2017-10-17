@@ -255,8 +255,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Cursor GetUserRecords(int userID){
         return database.rawQuery("SELECT  * " +
-                " FROM " + TBL_EXAMS , null);
-                //" --WHERE " + USER_ID + " = " + userID
+                " FROM " + TBL_EXAMS +
+                " WHERE " + USER_ID + " = " + userID,null);
     }
 
     public int GetTotalCorrectAns(int examid){
@@ -270,6 +270,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         int x = Integer.parseInt(c.getString(0));
 
         return x;
+    }
+
+    public Cursor GetQuestionList(){
+        return database.rawQuery("SELECT * FROM " + TBL_QUESTIONS ,null);
     }
 
 

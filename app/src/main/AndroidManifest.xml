@@ -23,7 +23,14 @@
         <activity android:name=".Activities.SchedulesActivity" />
         <activity android:name=".Activities.AdminPanelActivity" />
         <activity android:name=".Activities.ManageQuestionsActivity" />
-        <activity android:name=".Activities.RecordsActivity"></activity>
+        <activity
+            android:name=".Activities.RecordsActivity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.Main2Activity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
