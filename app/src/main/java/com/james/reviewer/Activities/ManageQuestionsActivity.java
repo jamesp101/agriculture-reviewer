@@ -1,9 +1,10 @@
 package com.james.reviewer.Activities;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -18,6 +19,8 @@ public class ManageQuestionsActivity extends AppCompatActivity {
 
 
     ListView list;
+    FloatingActionButton fab;
+
     DatabaseHandler database = LoginActivity.database;
     Cursor cursor;
     @Override
@@ -27,13 +30,31 @@ public class ManageQuestionsActivity extends AppCompatActivity {
 
 
         list = (ListView) findViewById(R.id.list_questions);
+        fab = (FloatingActionButton) findViewById(R.id.fab_addquestion);
+
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), QuestionEditorActivity.class);
+                intent.putExtra("editMode", "false");
+
+
+
+                startActivity(intent);
+            }
+        });
 
 
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+                Intent intent = new Intent(getApplicationContext(), QuestionEditorActivity.class);
+                intent.putExtra("editMode", "true");
+                intent.putExtra("id", Long.toString(l));
+                startActivity(intent);
+                finish();
             }
         });
         SetQuestions();

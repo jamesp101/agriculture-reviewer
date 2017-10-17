@@ -72,7 +72,9 @@ public class Main2Activity extends AppCompatActivity
         btnRecords.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplication(), RecordsActivity.class));
+                Intent intent = new Intent(getApplication(), RecordsActivity.class);
+                intent.putExtra("userId" , LoginActivity.userID+"");
+                startActivity(intent);
             }
         });
 

@@ -22,6 +22,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String USER_ID = "user_id";
     public static final String USER_NAME = "name";
     public static final String USER_PASS = "password";
+    public static final String USER_ISADMIN = "isAdmin";
+
 
     public static final String QUESTION_ID = "question_id";
     public static final String QUESTION_DESC = "description";
@@ -38,6 +40,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String EXAMS_STATUS = "status";
     public static final String EXAMS_QUESTNO = "numberOfQuestions";
     public static final String EXAMS_DATE = "date";
+    public static final String EXAMS_TIME = "exam_time";
+
 
     public static final int DB_VER = 1;
 
@@ -55,7 +59,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         database.execSQL("CREATE TABLE "+ TBL_USERS + "(" +
                         USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                         USER_NAME + " TEXT NOT NULL, " +
-                        USER_PASS + " TEXT NOT NULL )");
+                        USER_PASS + " TEXT NOT NULL ," +
+                        USER_ISADMIN + " TEXT )" );
 
         database.execSQL("CREATE TABLE "+ TBL_ANSWERS + "(" +
                 ANSWER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -74,11 +79,29 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         database.execSQL("CREATE TABLE "+ TBL_EXAMS+ "(" +
                 EXAMS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-
                 USER_ID + " INTEGER, " +
                 EXAMS_QUESTNO + " INTEGER, "+
                 EXAMS_STATUS + " INTEGER," +
-                EXAMS_DATE + " TEXT )");
+                EXAMS_DATE + " TEXT ," +
+                EXAMS_TIME + "TEXT )");
+
+        SetUp(database);
+    }
+    void SetUp(SQLiteDatabase db){
+
+        this.AddUser("admin","admin" ,"t",db);
+        this.addQuestions("How many stomachs do ruminant animals such as cattle and sheep have?" ,"1","2","3","4","4" ,db);
+        this.addQuestions("Which of the following properties of a soil is determined by the relative proportion of sand, silt and clay?" ,"Porosity","Structure","Texture","Bulk density","Texture" ,db);
+        this.addQuestions("Horticulturists often use a product called rooting powder or gel to stimulate cuttings to produce roots. What type of plant hormone is found in this product? " ,"Abscisic acid","Auxin","Cytokinin","Ethylene","Auxin" ,db );
+        this.addQuestions("Horticulturists often use a product called rooting powder or gel to stimulate cuttings to produce roots. What type of plant hormone is found in this product? " ,"Abscisic acid","Auxin","Cytokinin","Ethylene","Auxin" ,db );
+        this.addQuestions("Horticulturists often use a product called rooting powder or gel to stimulate cuttings to produce roots. What type of plant hormone is found in this product? " ,"Abscisic acid","Auxin","Cytokinin","Ethylene","Auxin" ,db );
+        this.addQuestions("Horticulturists often use a product called rooting powder or gel to stimulate cuttings to produce roots. What type of plant hormone is found in this product? " ,"Abscisic acid","Auxin","Cytokinin","Ethylene","Auxin" ,db );
+        this.addQuestions("Horticulturists often use a product called rooting powder or gel to stimulate cuttings to produce roots. What type of plant hormone is found in this product? " ,"Abscisic acid","Auxin","Cytokinin","Ethylene","Auxin" ,db );
+        this.addQuestions("Horticulturists often use a product called rooting powder or gel to stimulate cuttings to produce roots. What type of plant hormone is found in this product? " ,"Abscisic acid","Auxin","Cytokinin","Ethylene","Auxin" ,db );
+        this.addQuestions("Horticulturists often use a product called rooting powder or gel to stimulate cuttings to produce roots. What type of plant hormone is found in this product? " ,"Abscisic acid","Auxin","Cytokinin","Ethylene","Auxin" ,db );
+        this.addQuestions("Horticulturists often use a product called rooting powder or gel to stimulate cuttings to produce roots. What type of plant hormone is found in this product? " ,"Abscisic acid","Auxin","Cytokinin","Ethylene","Auxin" ,db );
+        this.addQuestions("Horticulturists often use a product called rooting powder or gel to stimulate cuttings to produce roots. What type of plant hormone is found in this product? " ,"Abscisic acid","Auxin","Cytokinin","Ethylene","Auxin" ,db );
+        this.addQuestions("Horticulturists often use a product called rooting powder or gel to stimulate cuttings to produce roots. What type of plant hormone is found in this product? " ,"Abscisic acid","Auxin","Cytokinin","Ethylene","Auxin" ,db );
     }
 
 
@@ -107,6 +130,30 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 */
     }
 
+
+    public void AddUser(String user, String pass,String admin){
+        database.execSQL("INSERT INTO " + TBL_USERS + " (" +
+                USER_NAME + "," + USER_PASS + "," + USER_ISADMIN + ") VALUES " +
+                "('" + user + "', '" + pass + "', '" + admin+ "')" );
+
+
+        /*
+        ContentValues cv = new ContentValues();
+        cv.put(user, USER_NAME);
+        cv.put(pass, USER_PASS);
+        database.insert(TBL_USERS, null , cv);TBL_QUESTIONS
+*/
+    }
+
+    public void AddUser(String user, String pass,String admin, SQLiteDatabase db){
+        db.execSQL("INSERT INTO " + TBL_USERS + " (" +
+                USER_NAME + "," + USER_PASS + "," + USER_ISADMIN + ") VALUES " +
+                "('" + user + "', '" + pass + "', '" + admin+ "')" );
+
+
+    }
+
+
     public void DeleteUser(String id){
 
         database.execSQL("DELETE FROM " + TBL_USERS + "WHERE " + USER_ID + " = " + id );
@@ -132,6 +179,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return database.rawQuery("SELECT * FROM " + TBL_USERS +
                                 " WHERE "+ USER_ID + " = " + userID,null);
     }
+    public Cursor GetUserList(){
+        return  database.rawQuery("SELECT * FROM " + TBL_USERS ,null);
+    }
 
 
 
@@ -139,7 +189,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
 
-
+    public void UpdateQuestions(String id,String quuestion,  String choice1, String choice2, String choice3,String choice4, String correctAns){
+        database.execSQL("UPDATE  " + TBL_QUESTIONS + " SET "+
+                QUESTION_DESC + " = '" +  quuestion +  "', " +
+                QUESTION_CHOICE1 + " = '" + choice1 + "', " +
+                QUESTION_CHOICE2 + " = '" + choice2 + "', " +
+                QUESTION_CHOICE3 + " = '" + choice3 + "', " +
+                QUESTION_CHOICE4 + " = '" + choice4 + "', " +
+                QUESTION_CORRECTANS + " = '" + correctAns +"'" +
+                " WHERE " + QUESTION_ID + " = " + id
+                );
+    }
+    public void DeleteQuestions(String id){
+        database.execSQL("DELETE FROM " + TBL_QUESTIONS + " WHERE " + QUESTION_ID + " = " +id);
+    }
 
 
 
@@ -148,10 +211,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public void addQuestions(String question, String choice1, String choice2, String choice3,String choice4, String correctAns ){
        database.execSQL("INSERT INTO " + TBL_QUESTIONS + " ("
-                            + QUESTION_DESC + ", " + QUESTION_CHOICE1 + ", " + QUESTION_CHOICE2 + ", " + QUESTION_CHOICE3 + ", " + QUESTION_CHOICE4 + ", " + QUESTION_CORRECTANS +  ") VALUES " +
+                             + QUESTION_DESC + ", " + QUESTION_CHOICE1 + ", " + QUESTION_CHOICE2 + ", " + QUESTION_CHOICE3 + ", " + QUESTION_CHOICE4 + ", " + QUESTION_CORRECTANS +  ") VALUES " +
                             "('" + question + "', '" + choice1 + "' , '"+ choice2+ "' , '" + choice3 + "', '" + choice4 + "', '" + correctAns + "')");
 
     }
+    public void addQuestions(String question, String choice1, String choice2, String choice3,String choice4, String correctAns, SQLiteDatabase db ){
+        db.execSQL("INSERT INTO " + TBL_QUESTIONS + " ("
+                + QUESTION_DESC + ", " + QUESTION_CHOICE1 + ", " + QUESTION_CHOICE2 + ", " + QUESTION_CHOICE3 + ", " + QUESTION_CHOICE4 + ", " + QUESTION_CORRECTANS +  ") VALUES " +
+                "('" + question + "', '" + choice1 + "' , '"+ choice2+ "' , '" + choice3 + "', '" + choice4 + "', '" + correctAns + "')");
+
+    }
+
+
 
     public void AddAnswers(int questionId , int examID, String answered){
         database.execSQL("INSERT INTO " + TBL_ANSWERS + " (" +
@@ -274,6 +345,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Cursor GetQuestionList(){
         return database.rawQuery("SELECT * FROM " + TBL_QUESTIONS ,null);
+    }
+    public Cursor GetQuestionById(String id){
+        return database.rawQuery("SELECT * FROM " + TBL_QUESTIONS + " WHERE " + QUESTION_ID + " = " + id ,null);
     }
 
 

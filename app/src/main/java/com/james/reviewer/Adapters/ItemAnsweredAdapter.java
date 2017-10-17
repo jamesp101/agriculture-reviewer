@@ -1,9 +1,11 @@
 package com.james.reviewer.Adapters;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.james.reviewer.R;
@@ -53,6 +55,7 @@ public class ItemAnsweredAdapter extends BaseAdapter {
             vi = LayoutInflater.from(context);
             v = vi.inflate(R.layout.item_answered, null);
         }
+        ImageView imageView = v.findViewById(R.id.imageView2);
 
 
 
@@ -64,6 +67,16 @@ public class ItemAnsweredAdapter extends BaseAdapter {
 
         TextView txtcorrectAns =(TextView) v.findViewById(R.id.txt_list_item_correctAns);
         txtcorrectAns.setText(z[i]);
+
+        if(y[i].equals(z[i])){
+            imageView.setImageResource(R.drawable.checked);
+            txtanswer.setTextColor(Color.rgb(0,150,0));
+        }else{
+            imageView.setImageResource(R.drawable.wrong);
+            txtanswer.setTextColor(Color.rgb(150,0,0));
+        }
+
+
         return v;
     }
 }

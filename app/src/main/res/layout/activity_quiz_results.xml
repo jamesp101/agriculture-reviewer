@@ -34,16 +34,16 @@
         android:id="@+id/button_z"
         android:layout_width="0dp"
         android:layout_height="53dp"
-        android:text="Button"
+        android:text="Finish"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/list_answered" />
 
     <ListView
         android:id="@+id/list_answered"
-        android:layout_width="313dp"
-        android:layout_height="343dp"
+        android:layout_width="227dp"
+        android:layout_height="335dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.51"

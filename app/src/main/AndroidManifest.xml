@@ -9,28 +9,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.LoginActivity">
+        <activity android:name=".Activities.LoginActivity"
+            android:label="Sign up"
+                >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.SignUpActivity" />
+        <activity android:name=".Activities.SignUpActivity"
+            android:label="Reviewer"/>
         <activity android:name=".Activities.MainMenuActivity" />
-        <activity android:name=".Activities.QuizActivity" />
-        <activity android:name=".Activities.QuizResultsActivity" />
+        <activity android:name=".Activities.QuizActivity"
+            android:label="Review"/>
+        <activity android:name=".Activities.QuizResultsActivity"
+            android:label="Results"/>
         <activity android:name=".Activities.SchedulesActivity" />
-        <activity android:name=".Activities.AdminPanelActivity" />
-        <activity android:name=".Activities.ManageQuestionsActivity" />
+        <activity android:name=".Activities.AdminPanelActivity"
+            android:label="Admin Panel"/>
+        <activity android:name=".Activities.ManageQuestionsActivity"
+            android:label="Manage Questions"/>
         <activity
             android:name=".Activities.RecordsActivity"
-            android:label="@string/title_activity_main2"
+            android:label="Main Menu"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Main2Activity"
             android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activities.QuestionEditorActivity" />
+        <activity android:name=".Activities.ViewUsersActivity"
+            android:parentActivityName=".Activities.MainMenuActivity"/>
+        <activity android:name=".Activities.ManageSchedulesActivity"></activity>
     </application>
 
 </manifest>

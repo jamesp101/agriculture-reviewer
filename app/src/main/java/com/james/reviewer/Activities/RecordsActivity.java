@@ -1,9 +1,11 @@
 package com.james.reviewer.Activities;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.james.reviewer.Adapters.RecordsItem;
@@ -16,7 +18,9 @@ public class RecordsActivity extends AppCompatActivity {
 
 
     DatabaseHandler database = LoginActivity.database;
-    int userid = LoginActivity.userID;
+    String userid;
+
+
 
 
     Cursor data;
@@ -26,6 +30,8 @@ public class RecordsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_records2);
 
+        userid = getIntent().getExtras().getString("userId");
+
 
         ListRecords();
 
@@ -34,7 +40,7 @@ public class RecordsActivity extends AppCompatActivity {
 
     void ListRecords(){
 
-        data = database.GetUserRecords(userid);
+        data = database.GetUserRecords(Integer.parseInt(userid));
 
                 LinkedList <String> id = new LinkedList<>();
         LinkedList <String> date = new LinkedList<>();
@@ -45,7 +51,6 @@ public class RecordsActivity extends AppCompatActivity {
             date.add(data.getString(4));
 
 
-            Log.w("xxxxxxxxxxx" , userid + "  xx  " + id.get(x) + "    xx "  + date.get(x ));
         }
 
 
@@ -56,5 +61,15 @@ public class RecordsActivity extends AppCompatActivity {
 
 
         listView.setAdapter(recordsItem);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent (getApplicationContext(), QuizResultsActivity.class);
+                intent.putExtra("examID",i+"");
+                startActivity(intent);
+
+            }
+        });
     }
 }

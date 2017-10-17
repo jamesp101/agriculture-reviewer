@@ -3,6 +3,7 @@ package com.james.reviewer.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,7 +76,8 @@ public class QuestionsAndAnswersFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 if (mListener != null) {
-                    mListener.onFragmentInteraction("a");
+
+                    mListener.onFragmentInteraction(radio_a.getText().toString());
 
 
                 }
@@ -85,7 +87,7 @@ public class QuestionsAndAnswersFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 if (mListener != null) {
-                    mListener.onFragmentInteraction("b");
+                    mListener.onFragmentInteraction(radio_b.getText().toString());
 
 
                 }
@@ -95,7 +97,7 @@ public class QuestionsAndAnswersFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 if (mListener != null) {
-                    mListener.onFragmentInteraction("c");
+                    mListener.onFragmentInteraction(radio_c.getText().toString());
 
                 }
             }
@@ -104,7 +106,7 @@ public class QuestionsAndAnswersFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 if (mListener != null) {
-                    mListener.onFragmentInteraction("d");
+                    mListener.onFragmentInteraction(radio_d.getText().toString());
 
                 }
             }

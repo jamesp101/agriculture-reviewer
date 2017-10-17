@@ -45,7 +45,7 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
 
     int currentNo = 0;
     int examID = 0;
-    int maxNo = 50;
+    int maxNo = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +67,6 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
 
         QuestionsAndAnswersFragment first = new QuestionsAndAnswersFragment();
         first.SetQuestion(queston,choice1,choice2,choice3,choice4);
-
-        qnaFragmentList.add(first);
-
-        fragmentManager.beginTransaction().replace(R.id.forFragment, qnaFragmentList.get(0)).commit();
 
 
 
@@ -96,7 +92,7 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
         txtCount.setText(Integer.toString(currentNo));;
        // Finish();
 
-        if(currentNo < 10){
+        if(currentNo < maxNo){
 
             NextQuestion();
 
@@ -119,7 +115,7 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
 
             Intent intent = new Intent (getApplicationContext(), QuizResultsActivity.class);
 
-            intent.putExtra("examID", examID);
+            intent.putExtra("examID", examID+"");
             startActivity(intent);
             finish();
         }

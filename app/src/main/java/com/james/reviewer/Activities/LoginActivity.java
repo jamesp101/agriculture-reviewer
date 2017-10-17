@@ -66,15 +66,13 @@ public class LoginActivity extends AppCompatActivity {
                     }
 
                 }catch (Exception e){
-                    System.out.println("<DEBUG> "+ e.toString());
+                    Toast.makeText(LoginActivity.this, "Error Username or Password", Toast.LENGTH_SHORT).show();
                 }
 
             }
         });
 
-        database.addQuestions("1?","x" ,"d" ,"z","s","a");
-        database.addQuestions("2?","xz" ,"d2" ,"z3","sa","c");
-        database.addQuestions("3?","x123" ,"d123" ,"z123","s213","d");
+
 
     }
 }

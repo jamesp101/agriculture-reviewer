@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -17,7 +18,7 @@ public class QuizResultsActivity extends AppCompatActivity {
 
 
 
-    int examId;
+    String examId;
 
     Button button;
     ListView listView;
@@ -34,21 +35,26 @@ public class QuizResultsActivity extends AppCompatActivity {
 
 
 
-
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
        // Cursor c = database.GetUser(LoginActivity.userID);
      //   String s = c.getString(0);
 
 
 
-        examId = getIntent().getExtras().getInt("examID");
+        examId = getIntent().getExtras().getString("examID");
         SetList();
 
      }
 
 
      void SetList(){
-         Cursor cursor = database.getAnsweredList(examId);
+         Cursor cursor = database.getAnsweredList(Integer.parseInt(examId));
          cursor.moveToFirst();
 
 
@@ -80,7 +86,7 @@ public class QuizResultsActivity extends AppCompatActivity {
          }
 
 
-         ItemAnsweredAdapter adapter = new ItemAnsweredAdapter(this,questionArray,answeredArray,correctArray);
+         ItemAnsweredAdapter adapter = new ItemAnsweredAdapter(this,questionArray,correctArray,answeredArray);
 
 
 

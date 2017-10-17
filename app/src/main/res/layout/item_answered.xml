@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="200dp"
     android:orientation="vertical"
     android:visibility="visible"
     android:weightSum="1">
 
     <TextView
         android:id="@+id/txt_list_item_question"
-        android:layout_width="match_parent"
-        android:layout_height="112dp"
+        android:layout_width="359dp"
+        android:layout_height="108dp"
         android:layout_weight="0.20"
         android:text="Question!"
         android:textSize="18sp"
@@ -29,12 +29,13 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/txt_list_item_question"
-        android:text="Correct Answer:"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Your Answer"
+        android:textColor="#000"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/txt_list_item_correctAns"
-        app:layout_constraintTop_toBottomOf="@+id/txt_list_item_question"
-        app:layout_constraintVertical_bias="0.101" />
+        app:layout_constraintRight_toLeftOf="@+id/txt_list_item_usertAns"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
         android:id="@+id/textView8"
@@ -43,43 +44,58 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView6"
-        android:text="Your Answer:"
+        android:text="Correct Answer"
+        android:textColor="#000"
         app:layout_constraintBottom_toTopOf="@+id/textView6"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_list_item_question"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_list_item_question" />
 
     <TextView
         android:id="@+id/txt_list_item_correctAns"
-        android:layout_width="249dp"
-        android:layout_height="35dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/txt_list_item_question"
+        android:layout_width="199dp"
+        android:layout_height="34dp"
+        android:layout_above="@+id/textView8"
+        android:layout_alignLeft="@+id/txt_list_item_usertAns"
+        android:layout_alignStart="@+id/txt_list_item_usertAns"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:textColor="#000"
+        app:layout_constraintBottom_toTopOf="@+id/txt_list_item_usertAns"
         app:layout_constraintTop_toBottomOf="@+id/txt_list_item_question"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintRight_toLeftOf="@+id/imageView2"
+        app:layout_constraintLeft_toRightOf="@+id/textView8"
+        app:layout_constraintHorizontal_bias="0.909" />
 
     <TextView
         android:id="@+id/txt_list_item_usertAns"
-        android:layout_width="249dp"
-        android:layout_height="42dp"
-        android:layout_alignBottom="@+id/textView8"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+        android:layout_width="198dp"
+        android:layout_height="39dp"
         android:layout_below="@+id/txt_list_item_correctAns"
+        android:layout_marginLeft="102dp"
+        android:layout_marginStart="102dp"
+        android:layout_toEndOf="@+id/textView8"
+        android:layout_toRightOf="@+id/textView8"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.283"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_list_item_correctAns"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_list_item_correctAns" />
 
-</RelativeLayout>
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="40dp"
+        android:layout_height="37dp"
+        android:layout_above="@+id/txt_list_item_correctAns"
+        android:layout_alignEnd="@+id/textView6"
+        android:layout_alignRight="@+id/textView6"
+        android:layout_toStartOf="@+id/txt_list_item_correctAns"
+        app:srcCompat="@drawable/checked"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_list_item_question"
+        app:layout_constraintLeft_toRightOf="@+id/txt_list_item_correctAns"
+        app:layout_constraintVertical_bias="0.709" />
+
+</android.support.constraint.ConstraintLayout>
