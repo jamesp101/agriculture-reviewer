@@ -93,15 +93,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         this.addQuestions("How many stomachs do ruminant animals such as cattle and sheep have?" ,"1","2","3","4","4" ,db);
         this.addQuestions("Which of the following properties of a soil is determined by the relative proportion of sand, silt and clay?" ,"Porosity","Structure","Texture","Bulk density","Texture" ,db);
         this.addQuestions("Horticulturists often use a product called rooting powder or gel to stimulate cuttings to produce roots. What type of plant hormone is found in this product? " ,"Abscisic acid","Auxin","Cytokinin","Ethylene","Auxin" ,db );
-        this.addQuestions("Horticulturists often use a product called rooting powder or gel to stimulate cuttings to produce roots. What type of plant hormone is found in this product? " ,"Abscisic acid","Auxin","Cytokinin","Ethylene","Auxin" ,db );
-        this.addQuestions("Horticulturists often use a product called rooting powder or gel to stimulate cuttings to produce roots. What type of plant hormone is found in this product? " ,"Abscisic acid","Auxin","Cytokinin","Ethylene","Auxin" ,db );
-        this.addQuestions("Horticulturists often use a product called rooting powder or gel to stimulate cuttings to produce roots. What type of plant hormone is found in this product? " ,"Abscisic acid","Auxin","Cytokinin","Ethylene","Auxin" ,db );
-        this.addQuestions("Horticulturists often use a product called rooting powder or gel to stimulate cuttings to produce roots. What type of plant hormone is found in this product? " ,"Abscisic acid","Auxin","Cytokinin","Ethylene","Auxin" ,db );
-        this.addQuestions("Horticulturists often use a product called rooting powder or gel to stimulate cuttings to produce roots. What type of plant hormone is found in this product? " ,"Abscisic acid","Auxin","Cytokinin","Ethylene","Auxin" ,db );
-        this.addQuestions("Horticulturists often use a product called rooting powder or gel to stimulate cuttings to produce roots. What type of plant hormone is found in this product? " ,"Abscisic acid","Auxin","Cytokinin","Ethylene","Auxin" ,db );
-        this.addQuestions("Horticulturists often use a product called rooting powder or gel to stimulate cuttings to produce roots. What type of plant hormone is found in this product? " ,"Abscisic acid","Auxin","Cytokinin","Ethylene","Auxin" ,db );
-        this.addQuestions("Horticulturists often use a product called rooting powder or gel to stimulate cuttings to produce roots. What type of plant hormone is found in this product? " ,"Abscisic acid","Auxin","Cytokinin","Ethylene","Auxin" ,db );
-        this.addQuestions("Horticulturists often use a product called rooting powder or gel to stimulate cuttings to produce roots. What type of plant hormone is found in this product? " ,"Abscisic acid","Auxin","Cytokinin","Ethylene","Auxin" ,db );
+        this.addQuestions("Which one among the following components of soil organic matter is most resistant to decomposition?","Cellulose","Starch","Hemicellulose", "Lignin", "Lignin",db );
+        this.addQuestions("The development of seed without sexial fusion of male and female gametes is known as " ,"Vegetative reproduction","Apomixis","Self-incompatibility" ,"Apospory","Apomixis" ,db );
+        this.addQuestions("The Wobble hypothesis regarding genetic code (condos and anticodons) was proposed by" ,"Nirenberg","Leder","Khorana","Crick","Crick" ,db );
+        this.addQuestions("Tift-23A, a cytoplasmic male sterile line, is used for development of hybrids in ","Sorghum","Maize", "Rice","Pearl Millet","Pearl Millet",db );
+        this.addQuestions("Which one of the following is a measure of the net positve charge held on soil exchange complex?", "Anion exchange capacity","Cation exchange capacity","Base exchange capacity" , "Electrical conductivity","Cation exchange capacity",db );
+        this.addQuestions("Which if the following scientist proposed the Critical Level Concept for nutrients in soil? " ,"Jackson","Cate and Nelson","Stem","Schofield","Cate and Nelson" ,db );
+        this.addQuestions("To produce more output per unit of land , a cultivator will" ,"Resort to diversification","Use land intensively","Use land extensively","Use land intensively and extensively","Use land intensively" ,db );
+        this.addQuestions("Which one of the following phytohormones cotrols the apical domincance in plants?","Auxin","Ethylene" ,"Cytokinin" ,"Giberellin","Auxin",db );
+        this.addQuestions("Size of the spray drop from a mist sprayer varies from" ,"1-50um","50-100um","100-200um","200-300um","50-100um" ,db );
+        this.addQuestions("Which one of the following soil properties does not change by dropping and cultivation?","Bulk Density", "Particle Density" ,"Porosity","Permeability", "Particle Density",db );
+        this.addQuestions("Which one of the following chemicals is used to keep the fruits and vegetables firm","Calcium chloride", "Sodium benzoate" ,"Ascorbic acid","Sodium chloride", "Calcium chloride",db );
+        this.addQuestions("Ammonium fixation in the soil is due to ","Microbial assimilation", "Microbial Fixation" ,"Microbial immobilization","Soil Exchange reaction", "Soil Exchange reaction",db );
+        this.addQuestions("Which one of the following type of soils most suitable for groundnut cultivation ","Sandy and Sandy-loam soil", "Loam and clay soil" ,"Clayed Soil","Silty Soil", "Silty Soil",db );
     }
 
 

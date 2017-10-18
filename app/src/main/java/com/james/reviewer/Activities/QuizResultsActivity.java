@@ -61,7 +61,7 @@ public class QuizResultsActivity extends AppCompatActivity {
          String points = ""+database.GetTotalCorrectAns(Integer.parseInt(examId));
          TextView textView = (TextView) findViewById(R.id.txt_results);
 
-         textView.setText(username + "\t" + points);
+         textView.setText("TOTAL POINT:" + points);
 
 
 
