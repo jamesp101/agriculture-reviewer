@@ -7,9 +7,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import com.james.reviewer.DatabaseHandler;
 import com.james.reviewer.Adapters.ItemAnsweredAdapter;
+import com.james.reviewer.DatabaseHandler;
 import com.james.reviewer.R;
 
 import java.util.LinkedList;
@@ -55,7 +56,13 @@ public class QuizResultsActivity extends AppCompatActivity {
 
      void SetList(){
          Cursor cursor = database.getAnsweredList(Integer.parseInt(examId));
-         cursor.moveToFirst();
+         String temp = database.GetUserByExamId(examId);
+         String username = database.GetUserByExamId(temp);
+         String points = ""+database.GetTotalCorrectAns(Integer.parseInt(examId));
+         TextView textView = (TextView) findViewById(R.id.txt_results);
+
+         textView.setText(username + "\t" + points);
+
 
 
          LinkedList<String> questionList = new LinkedList<>();

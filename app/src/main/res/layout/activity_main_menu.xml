@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.james.reviewer.Activities.MainMenuActivity">
+    tools:context="com.james.reviewer.Activities.MainMenuActivity"
+    >
 
 
     <ImageButton
@@ -18,7 +19,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.281"
-        app:srcCompat="@drawable/play" />
+        app:srcCompat="@drawable/playb" />
 
     <TextView
         android:id="@+id/textView9"
@@ -35,24 +36,27 @@
         android:id="@+id/btn_viewRec"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="#7C4DFF"
         android:text="Records"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintVertical_bias="0.784" />
 
     <Button
         android:id="@+id/btn_viewSched"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="#7C4DFF"
         android:text="Schedules"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintVertical_bias="0.965" />
 
     <include layout="@layout/content_main2"

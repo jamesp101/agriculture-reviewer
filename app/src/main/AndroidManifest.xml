@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.LoginActivity"
-            android:label="Sign up"
+            android:label="Reviewer"
                 >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,26 +19,35 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.SignUpActivity"
+            android:parentActivityName=".Activities.MainMenuActivity"
             android:label="Reviewer"/>
-        <activity android:name=".Activities.MainMenuActivity" />
+        <activity android:name=".Activities.MainMenuActivity"
+            android:parentActivityName=".Activities.MainMenuActivity"/>
         <activity android:name=".Activities.QuizActivity"
             android:label="Review"/>
         <activity android:name=".Activities.QuizResultsActivity"
+            android:parentActivityName=".Activities.MainMenuActivity"
             android:label="Results"/>
-        <activity android:name=".Activities.SchedulesActivity" />
+        <activity android:name=".Activities.SchedulesActivity"
+            android:parentActivityName=".Activities.MainMenuActivity"/>
         <activity android:name=".Activities.AdminPanelActivity"
-            android:label="Admin Panel"/>
+            android:label="Admin Panel"
+            android:parentActivityName=".Activities.MainMenuActivity"/>
         <activity android:name=".Activities.ManageQuestionsActivity"
+            android:parentActivityName=".Activities.MainMenuActivity"
             android:label="Manage Questions"/>
         <activity
             android:name=".Activities.RecordsActivity"
             android:label="Main Menu"
+            android:parentActivityName=".Activities.MainMenuActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Main2Activity"
-            android:label="@string/title_activity_main2"
+            android:label="Main Menu"
+            android:parentActivityName=".Activities.MainMenuActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.QuestionEditorActivity" />
+        <activity android:name=".Activities.QuestionEditorActivity"
+            android:parentActivityName=".Activities.MainMenuActivity"/>
         <activity android:name=".Activities.ViewUsersActivity"
             android:parentActivityName=".Activities.MainMenuActivity"/>
         <activity android:name=".Activities.ManageSchedulesActivity"></activity>

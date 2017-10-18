@@ -29,6 +29,8 @@ public class ManageQuestionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_manage_questions);
 
 
+
+
         list = (ListView) findViewById(R.id.list_questions);
         fab = (FloatingActionButton) findViewById(R.id.fab_addquestion);
 

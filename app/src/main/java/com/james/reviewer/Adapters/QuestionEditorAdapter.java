@@ -74,19 +74,19 @@ public class QuestionEditorAdapter extends BaseAdapter {
         txtquestion.setText(questionDesc.get(i));
 
         TextView txtchoice1 =(TextView) v.findViewById(R.id.text_qlistchoice1);
-        txtchoice1.setText(choice1.get(i));
+        txtchoice1.setText("A."+choice1.get(i));
 
         TextView txtchoice2 =(TextView) v.findViewById(R.id.text_qlistchoice2);
-        txtchoice2.setText(choice2.get(i));
+        txtchoice2.setText("B." +choice2.get(i));
 
         TextView txtchoice3 =(TextView) v.findViewById(R.id.text_qlistchoice3);
-        txtchoice3.setText(choice3.get(i));
+        txtchoice3.setText("C."+choice3.get(i));
 
         TextView txtchoice4 =(TextView) v.findViewById(R.id.text_qlistchoice4);
-        txtchoice4.setText(choice4.get(i));
+        txtchoice4.setText("D."+choice4.get(i));
 
         TextView txtans =(TextView) v.findViewById(R.id.text_qlistAns);
-        txtans.setText(correctAns.get(i));
+        txtans.setText("Correct answer : " + correctAns.get(i));
 
 
         return v;

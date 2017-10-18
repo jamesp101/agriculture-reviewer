@@ -154,6 +154,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
+
     public void DeleteUser(String id){
 
         database.execSQL("DELETE FROM " + TBL_USERS + "WHERE " + USER_ID + " = " + id );
@@ -274,7 +275,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
+    public String GetUserById(String uid){
+        Cursor c = database.rawQuery("SELECT " + USER_NAME + " FROM " + TBL_USERS + " WHERE " + USER_ID + " = " + uid , null);
+        c.moveToNext();
+        return c.getString(1);
 
+    }
 
 
     public int getExamId(int userId){
@@ -309,7 +315,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                                 TBL_QUESTIONS + "." + QUESTION_CORRECTANS + "  , " +
                                 TBL_ANSWERS + "." + ANSWER_ANSWERED +
                                 " FROM " + TBL_ANSWERS +
-                                " LEFT JOIN " +TBL_QUESTIONS +  " ON " +
+                                "  JOIN " +TBL_QUESTIONS +  " ON " +
                                 TBL_ANSWERS + "." + QUESTION_ID + " = " + TBL_QUESTIONS + "." + QUESTION_ID +
                                 " WHERE "+ EXAMS_ID + " = " + examid ,null);
 
@@ -323,6 +329,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 */
     }
 
+    public String GetUserByExamId(String examId){
+        Cursor c = database.rawQuery("SELECT " + TBL_EXAMS + "." + USER_ID +
+                                        " FROM " + TBL_EXAMS + "" +
+                                       // " INNER  JOIN " + TBL_EXAMS + " ON " + TBL_EXAMS + "." + USER_ID + " = " + TBL_USERS + "." + USER_ID+
+                                 " WHERE " +TBL_EXAMS +"."+ EXAMS_ID + "=" + examId,null );
+
+        c.moveToFirst();
+        return c.getString(0);
+    }
+
 
     public Cursor GetUserRecords(int userID){
         return database.rawQuery("SELECT  * " +
@@ -331,10 +347,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public int GetTotalCorrectAns(int examid){
-        Cursor c = database.rawQuery("SELECT COUNT("+ ANSWER_ID +") AS TOTAL" +
-
-                " FROM " + TBL_ANSWERS + " WHERE " +
-                EXAMS_ID + " = "  + examid, null);
+        Cursor c = database.rawQuery("SELECT COUNT("+ TBL_ANSWERS+"." +ANSWER_ID +") AS TOTAL" +
+                " FROM " + TBL_ANSWERS +
+                " INNER JOIN " + TBL_QUESTIONS + " ON " +
+                TBL_ANSWERS + "." + QUESTION_ID + " = " +
+                         TBL_QUESTIONS + "."  + QUESTION_ID +
+                " WHERE "+ EXAMS_ID + " = "  + examid + " AND " +
+                TBL_ANSWERS + "." + ANSWER_ANSWERED  + " = " + TBL_QUESTIONS + "." + QUESTION_CORRECTANS ,  null);
 
 
         c.moveToFirst();

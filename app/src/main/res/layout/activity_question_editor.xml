@@ -16,37 +16,40 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.105"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintVertical_bias="0.115"
+        app:layout_constraintHorizontal_bias="1.0" />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Question"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#212121"
         app:layout_constraintBottom_toTopOf="@+id/edit_questions"
-        app:layout_constraintHorizontal_bias="0.098" />
+        app:layout_constraintHorizontal_bias="0.098"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="D."
+        android:textColor="#212121"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_questions"
-        app:layout_constraintVertical_bias="0.644"
         app:layout_constraintRight_toLeftOf="@+id/edit_choice1"
-        app:layout_constraintHorizontal_bias="0.513" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_questions"
+        app:layout_constraintVertical_bias="0.644" />
 
     <TextView
         android:id="@+id/textView22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="C."
+        android:textColor="#212121"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/edit_choice3"
@@ -70,11 +73,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="b."
+        android:textColor="#212121"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/edit_choice2"
         app:layout_constraintTop_toBottomOf="@+id/edit_questions"
-        app:layout_constraintVertical_bias="0.261"
-        app:layout_constraintRight_toLeftOf="@+id/edit_choice2" />
+        app:layout_constraintVertical_bias="0.261" />
 
     <EditText
         android:id="@+id/edit_choice2"
@@ -93,11 +97,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="A."
+        android:textColor="#212121"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/edit_choice1"
         app:layout_constraintTop_toBottomOf="@+id/edit_questions"
-        app:layout_constraintVertical_bias="0.064"
-        app:layout_constraintRight_toLeftOf="@+id/edit_choice1" />
+        app:layout_constraintVertical_bias="0.064" />
 
     <EditText
         android:id="@+id/edit_choice1"
@@ -128,22 +133,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Correct Answer"
+        android:textColor="#212121"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.935"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.06" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.935" />
 
     <Spinner
         android:id="@+id/spinner_correctAns"
         android:layout_width="131dp"
         android:layout_height="42dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintVertical_bias="0.965" />
+        app:layout_constraintVertical_bias="0.965"
+        app:layout_constraintLeft_toRightOf="@+id/textView23" />
 
 </android.support.constraint.ConstraintLayout>

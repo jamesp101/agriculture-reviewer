@@ -17,6 +17,8 @@ public class LoginActivity extends AppCompatActivity {
 
     public static DatabaseHandler database;
     public static int userID;
+    public static String username;
+    public static String usertype;
 
     Button btnLogin;
     Button btnCreateUser;
@@ -56,7 +58,8 @@ public class LoginActivity extends AppCompatActivity {
                     cursor.moveToFirst();
 
                     userID = Integer.parseInt(cursor.getString(cursor.getColumnIndex(DatabaseHandler.USER_ID)));
-
+                    username = cursor.getString(1);
+                    usertype = cursor.getString(3);
 
                     if(cursor.getCount() != 0){
                         startActivity(new Intent(getApplicationContext(), Main2Activity.class));

@@ -7,7 +7,7 @@
     <TextView
         android:id="@+id/text_qlistQuestions"
         android:layout_width="match_parent"
-        android:layout_height="128dp"
+        android:layout_height="wrap_content"
         android:layout_weight="0.20"
         android:text="Question!"
         android:textColor="@color/black" />
@@ -23,7 +23,7 @@
         android:id="@+id/text_qlistchoice2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.20"
+        android:layout_weight="0.10"
         android:text="Choice" />
 
     <TextView
