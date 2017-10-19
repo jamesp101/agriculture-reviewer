@@ -52,12 +52,15 @@ public class RecordsActivity extends AppCompatActivity {
 
 
         }
+        for(int a = 0 ; a <id.size(); a++){
+            score.add(Integer.toString(database.GetTotalCorrectAns(Integer.parseInt(id.get(a)))));
+        }
 
 
         ListView listView = (ListView) findViewById(R.id.list_records);
 
 
-        RecordsItem recordsItem = new RecordsItem(this,id, date);
+        RecordsItem recordsItem = new RecordsItem(this,id, date,score);
 
 
         listView.setAdapter(recordsItem);
@@ -66,7 +69,7 @@ public class RecordsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent (getApplicationContext(), QuizResultsActivity.class);
-                intent.putExtra("examID",i+"");
+                intent.putExtra("examID",Integer.toString(i + 1));
                 startActivity(intent);
 
             }

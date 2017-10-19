@@ -45,7 +45,7 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
 
     int currentNo = 0;
     int examID = 0;
-    int maxNo = 2;
+    int maxNo = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +59,6 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
 
         NextQuestion();
 
-
-        String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
-        database.AddExam(1,maxNo,LoginActivity.userID, currentDateTimeString);
-        examID = database.getExamLastId(LoginActivity.userID);
 
 
         txtCount = (TextView) findViewById(R.id.txt_countCurrentNo);
@@ -100,12 +96,18 @@ public class QuizActivity extends AppCompatActivity implements QuestionsAndAnswe
 
         currentNo++;
 
-        if(currentNo >= maxNo){
+        if(currentNo > maxNo){
+
+            String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+            database.AddExam(1,maxNo,LoginActivity.userID, currentDateTimeString);
+            examID = database.getExamLastId(LoginActivity.userID);
+
+            Log.wtf("wtf", examID+"xxxxxxxxxxxxxx");
 
             for(int a = 0; a < maxNo;a++){
                 answerList.add(ans);
                 database.AddAnswers(Integer.parseInt(questionIdList.get(a)), examID,answerList.get(a));
-                Log.w("log", questionIdList.get(a) + " " + examID + " " +answerList.get(a) +   "size:" +qnaFragmentList.size());
+
             }
 
             Intent intent = new Intent (getApplicationContext(), QuizResultsActivity.class);

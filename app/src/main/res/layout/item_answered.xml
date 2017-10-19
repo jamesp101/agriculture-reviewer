@@ -29,13 +29,13 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/txt_list_item_question"
-        android:text="Your Answer"
+        android:text="Correct Answer"
         android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/txt_list_item_usertAns"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <TextView
         android:id="@+id/textView8"
@@ -44,7 +44,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView6"
-        android:text="Correct Answer"
+        android:text="Your Answer"
         android:textColor="#000"
         app:layout_constraintBottom_toTopOf="@+id/textView6"
         app:layout_constraintHorizontal_bias="0.0"

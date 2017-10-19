@@ -19,14 +19,14 @@ import java.util.LinkedList;
 public class RecordsItem extends BaseAdapter {
 
 
-    LinkedList <String> id, date;
+    LinkedList <String> id, date,score;
     Context context;
 
-    public RecordsItem (Context context,LinkedList<String> id , LinkedList <String> date){
+    public RecordsItem (Context context,LinkedList<String> id , LinkedList <String> date, LinkedList <String> score){
         this.id = id;
         this.date = date;
         this.context = context;
-
+        this.score = score;
         for(int x = 0; x < id.size(); x++){
             Log.w("zzzzzzz" ,  "  xx  " + this.id.get(x) + "    xx "  + this.date.get(x ));
         }
@@ -60,11 +60,11 @@ public class RecordsItem extends BaseAdapter {
 
 
 
-        TextView txtquestion =(TextView) v.findViewById(R.id.txt_date);
-        txtquestion.setText(id.get(i));
+        TextView x =(TextView) v.findViewById(R.id.txt_date);
+        x.setText("Points: "+score.get(i));
 
-        TextView txtanswer =(TextView) v.findViewById(R.id.txt_score);
-        txtanswer.setText(date.get(i));
+        TextView y =(TextView) v.findViewById(R.id.txt_score);
+        y.setText(date.get(i));
 
         return v;
     }

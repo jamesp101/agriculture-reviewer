@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by james on 10/6/17.
@@ -230,6 +231,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
     public void AddAnswers(int questionId , int examID, String answered){
+        Log.w("log", questionId + " " + examID + " " +answered );
         database.execSQL("INSERT INTO " + TBL_ANSWERS + " (" +
                 QUESTION_ID + ", " + EXAMS_ID + ", " + ANSWER_ANSWERED + ") VALUES " +
                 "(" + questionId + ", " + examID + ", '" + answered + "')" );
@@ -334,10 +336,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public String GetUserByExamId(String examId){
-        Cursor c = database.rawQuery("SELECT " + TBL_EXAMS + "." + USER_ID +
+        Cursor c = database.rawQuery("SELECT " + USER_ID +
                                         " FROM " + TBL_EXAMS + "" +
                                        // " INNER  JOIN " + TBL_EXAMS + " ON " + TBL_EXAMS + "." + USER_ID + " = " + TBL_USERS + "." + USER_ID+
-                                 " WHERE " +TBL_EXAMS +"."+ EXAMS_ID + "=" + examId,null );
+                                 " WHERE " + EXAMS_ID + "=" + examId,null );
 
         c.moveToFirst();
         return c.getString(0);
@@ -347,7 +349,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Cursor GetUserRecords(int userID){
         return database.rawQuery("SELECT  * " +
                 " FROM " + TBL_EXAMS +
-                " WHERE " + USER_ID + " = " + userID,null);
+                " WHERE " + USER_ID + " = " + userID +
+                " ORDER BY " + USER_ID + " DESC", null);
     }
 
     public int GetTotalCorrectAns(int examid){

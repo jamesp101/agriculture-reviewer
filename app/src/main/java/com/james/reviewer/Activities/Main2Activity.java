@@ -120,10 +120,11 @@ public class Main2Activity extends AppCompatActivity
         int id = item.getItemId();
         Log.w("xxxxxxxxxxxxxx" , Integer.toString(item.getItemId()));
         //noinspection SimplifiableIfStatement
-        if(id == R.id.action_settings) {
-            Log.w("ljhsdfg" ,"asdased");
-            return true;
-        } if(id == R.id.nav_admin){
+      //  if(id == R.id.action_settings) {
+         //   Log.w("ljhsdfg" ,"asdased");
+           // return true;
+       // }
+        if(id == R.id.nav_admin){
             startActivity(new Intent(getApplicationContext(), AdminPanelActivity.class));
             Log.w("1414141341234123" ,"asdased");
             finish();

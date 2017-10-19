@@ -49,6 +49,7 @@ public class QuizResultsActivity extends AppCompatActivity {
 
 
         examId = getIntent().getExtras().getString("examID");
+        Log.w("LOGGG", examId);
         SetList();
 
      }
@@ -61,7 +62,7 @@ public class QuizResultsActivity extends AppCompatActivity {
          String points = ""+database.GetTotalCorrectAns(Integer.parseInt(examId));
          TextView textView = (TextView) findViewById(R.id.txt_results);
 
-         textView.setText("TOTAL POINT:" + points);
+         textView.setText("TOTAL POINTS:" + points);
 
 
 
